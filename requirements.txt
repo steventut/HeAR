@@ -1,5 +1,5 @@
 streamlit
-openai==0.28.0
+openai
 hugchat==0.2.0
 #hugchat==0.1.0
 #langchain

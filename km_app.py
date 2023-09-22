@@ -42,7 +42,7 @@ if 'logged_in_name' not in st.session_state:
 if 'cwd' not in st.session_state:
 	st.session_state.cwd = ''	
 if 'isLoadedPizzaResturant' not in st.session_state:
-    st.session_state['isLoadedPizzaResturant'] = False
+    st.session_state.isLoadedPizzaResturant = False
 	    
 menu = ["None: try it out without login","SignUp: for free","Login: for more functionalities"]
 if session_state.isLoggedIn:

@@ -176,6 +176,9 @@ if prompt := st.chat_input(disabled=not (hf_email and hf_pass)):
     with st.chat_message("user"):
         st.write(prompt)
 
+if session_state.knowledge_Database == 'Pizza Resturant':
+    Pizza_Resturant.collect_messages(prompt)
+
 # Generate a new response if last message is not from assistant
 if session_state.knowledge_Database != 'Pizza Resturant':
     if st.session_state.messages[-1]["role"] != "assistant":
@@ -195,7 +198,7 @@ demo_knowledge_Database = st.sidebar.selectbox(
 #if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
 if demo_knowledge_Database == 'Pizza Resturant':
     session_state.knowledge_Database = 'Pizza Resturant'
-    Pizza_Resturant.main_function(prompt)
+    Pizza_Resturant.main_function()
 
 #DO ONLY ONCE !!! initialize the demo knowledge Database: Trading Strategy
 if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':

@@ -3,7 +3,7 @@ import streamlit as st
 
 ### Initialize openai Credentials
 openai.api_key = st.secrets['api']
-context = []
+#context = []
 
 def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0):
     response = openai.ChatCompletion.create(
@@ -15,23 +15,25 @@ def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0)
     return response.choices[0].message["content"]
 
 def collect_messages(prompt):
-    global context
+    #global context
     #prompt = inp.value_input
     #inp.value = ''
-    context.append({'role':'user', 'content':f"{prompt}"})
+    #context.append({'role':'user', 'content':f"{prompt}"})
+    st.session_state.messages.append({'role':'user', 'content':f"{prompt}"})    
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):    
-            response = get_completion_from_messages(context) 
+            #response = get_completion_from_messages(context) 
+            response = get_completion_from_messages(st.session_state.messages)
             st.write(prompt) #for debugging...
             st.write(response) 
         message = {"role": "assistant", "content": response}
         st.session_state.messages.append(message)            
-    context.append({'role':'assistant', 'content':f"{response}"})
+    #context.append({'role':'assistant', 'content':f"{response}"})
 
 ### main_function()
 ### main_function()
 def main_function(prompt):
-    global context
+    #global context
     context = [ {'role':'system', 'content':"""
 You are OrderBot, an automated service to collect orders for a pizza restaurant. \
 You first greet the customer, then collects the order, \
@@ -61,7 +63,7 @@ coke 3.00, 2.00, 1.00 \
 sprite 3.00, 2.00, 1.00 \
 bottled water 5.00 \
 """} ]  # accumulate messages
-
+    st.session_state.messages.append(context)    
     collect_messages('')
 
 #inp = pn.widgets.TextInput(value="Hi", placeholder='Enter text here…')

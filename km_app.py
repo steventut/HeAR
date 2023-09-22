@@ -178,7 +178,7 @@ if prompt := st.chat_input(disabled=not (hf_email and hf_pass)):
     with st.chat_message("user"):
         st.write(prompt)
 
-if session_state.knowledge_Database == 'Pizza Resturant':
+if session_state.knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPizzaResturant == True:
     Pizza_Resturant.collect_messages(prompt)
 
 # Generate a new response if last message is not from assistant

@@ -28,7 +28,7 @@ def collect_messages(prompt):
 
 ### main_function()
 ### main_function()
-main_function(prompt):
+def main_function(prompt):
     context = [ {'role':'system', 'content':"""
 You are OrderBot, an automated service to collect orders for a pizza restaurant. \
 You first greet the customer, then collects the order, \

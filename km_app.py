@@ -48,7 +48,8 @@ if session_state.isLoggedIn:
     #st.write("Logged in as", session_state2.logged_in_name)
     #st.write("Current working directory:", session_state3.cwd)
     menu = ["Logged in as " + session_state2.logged_in_name, "Logout"]
-    st.session_state.isLoadedPizzaResturant = False
+    if 'isLoadedPizzaResturant' not in st.session_state:
+        st.session_state['isLoadedPizzaResturant'] = False
 	
     #choice = st.sidebar.radio("Login or SignUp for free",menu)
     #if choice == "Logout":
@@ -203,7 +204,6 @@ if demo_knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPiz
     Pizza_Resturant.main_function('')
     st.session_state.isLoadedPizzaResturant = True
     
-
 #DO ONLY ONCE !!! initialize the demo knowledge Database: Trading Strategy
 if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
     #data3 = get_dataset(uploaded_file) #Steve: v1.9

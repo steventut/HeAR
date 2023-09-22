@@ -2,6 +2,7 @@ import openai #9/22/2023
 
 ### Initialize openai Credentials
 openai.api_key = st.secrets['api']
+global context
 
 def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0):
     response = openai.ChatCompletion.create(
@@ -12,24 +13,18 @@ def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0)
 #   print(str(response.choices[0].message))
     return response.choices[0].message["content"]
 
-def collect_messages(_):
+def collect_messages(prompt):
     #prompt = inp.value_input
     #inp.value = ''
-    if prompt := st.chat_input():
-    #if prompt := st.chat_input(prompt): 
-        if prompt != '':
-    	    st.session_state.messages.append({"role": "user", "content": prompt})
-        with st.chat_message("user"):
-            st.write(prompt)
     context.append({'role':'user', 'content':f"{prompt}"})
-    response = get_completion_from_messages(context) 
+    with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):    
+            response = get_completion_from_messages(context) 
+            st.write(prompt) #for debugging...
+            st.write(response) 
+        message = {"role": "assistant", "content": response}
+        st.session_state.messages.append(message)            
     context.append({'role':'assistant', 'content':f"{response}"})
-    panels.append(
-        pn.Row('User:', pn.pane.Markdown(prompt, width=600)))
-    panels.append(
-        pn.Row('Assistant:', pn.pane.Markdown(response, width=600, style={'background-color': '#F6F6F6'})))
- 
-    return pn.Column(*panels)
 
 ### main_function()
 ### main_function()
@@ -64,28 +59,7 @@ sprite 3.00, 2.00, 1.00 \
 bottled water 5.00 \
 """} ]  # accumulate messages
 
-# User-provided prompt
-@if session_state.knowledge_Database == 'Pizza Resturant':
-    if prompt := st.chat_input():
-    #if prompt := st.chat_input(prompt): 
-        if prompt != '':
-    	    st.session_state.messages.append({"role": "user", "content": prompt})
-        with st.chat_message("user"):
-            st.write(prompt)
-
-    collect_messages(_)
-
-# Generate a new response if last message is not from assistant
-if st.session_state.messages[-1]["role"] != "assistant":
-    with st.chat_message("assistant"):
-        with st.spinner("Thinking..."):
-            #response = generate_response(prompt, hf_email, hf_pass) 
-
-            st.write(prompt) #for debugging...
-            st.write(response) 
-    message = {"role": "assistant", "content": response}
-    st.session_state.messages.append(message)
-
+    collect_messages('')
 
 #inp = pn.widgets.TextInput(value="Hi", placeholder='Enter text here…')
 #button_conversation = pn.widgets.Button(name="Chat!")

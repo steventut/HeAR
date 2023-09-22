@@ -3,7 +3,7 @@ import streamlit as st
 
 ### Initialize openai Credentials
 openai.api_key = st.secrets['api']
-context = ''
+context = []
 
 def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0):
     response = openai.ChatCompletion.create(

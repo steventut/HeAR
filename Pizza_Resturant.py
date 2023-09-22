@@ -63,7 +63,8 @@ coke 3.00, 2.00, 1.00 \
 sprite 3.00, 2.00, 1.00 \
 bottled water 5.00 \
 """} ]  # accumulate messages
-    st.session_state.messages.append(context)    
+    #st.session_state.messages.append(context)    
+    st.session_state.messages = context
     collect_messages('')
 
 #inp = pn.widgets.TextInput(value="Hi", placeholder='Enter text here…')

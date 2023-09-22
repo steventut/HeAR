@@ -48,6 +48,8 @@ if session_state.isLoggedIn:
     #st.write("Logged in as", session_state2.logged_in_name)
     #st.write("Current working directory:", session_state3.cwd)
     menu = ["Logged in as " + session_state2.logged_in_name, "Logout"]
+    st.session_state.isLoadedPizzaResturant = False
+	
     #choice = st.sidebar.radio("Login or SignUp for free",menu)
     #if choice == "Logout":
     #    session_state.isLoggedIn = False
@@ -196,9 +198,11 @@ demo_knowledge_Database = st.sidebar.selectbox(
     ('None', 'Trading Strategy', 'Pizza Resturant', 'Class Reunion (preparing...)'))
 ## Launch chat using different knowledge Database
 #if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
-if demo_knowledge_Database == 'Pizza Resturant':
+if demo_knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPizzaResturant == False:
     session_state.knowledge_Database = 'Pizza Resturant'
     Pizza_Resturant.main_function('')
+    st.session_state.isLoadedPizzaResturant = True
+    
 
 #DO ONLY ONCE !!! initialize the demo knowledge Database: Trading Strategy
 if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
@@ -216,6 +220,8 @@ if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
                 st.write(response) 
         message = {"role": "assistant", "content": response}
         st.session_state.messages.append(message)
+elif demo_knowledge_Database == 'Pizza Resturant':
+   pass
 elif demo_knowledge_Database != 'None':
    st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more autoML functionalities!")
 

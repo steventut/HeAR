@@ -185,7 +185,12 @@ if st.session_state.messages[-1]["role"] != "assistant":
 ### 1. Select a demo knowledge Database
 demo_knowledge_Database = st.sidebar.selectbox( 
     '1. Select a demo knowledge Database',
-    ('None', 'Trading Strategy', 'Pizza Resturant (parparing...)', 'Class Reunion (parparing...)'))
+    ('None', 'Trading Strategy', 'Pizza Resturant', 'Class Reunion (preparing...)'))
+## Launch chat using different knowledge Database
+#if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
+if demo_knowledge_Database == 'Pizza Resturant':	
+    Pizza_Resturant.main_function()
+
 #DO ONLY ONCE !!! initialize the demo knowledge Database: Trading Strategy
 if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
     #data3 = get_dataset(uploaded_file) #Steve: v1.9

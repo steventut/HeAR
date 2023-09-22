@@ -33,6 +33,7 @@ session_state3 = st.session_state
 session_state4 = st.session_state	
 if 'isLoggedIn' not in st.session_state:
 	st.session_state.isLoggedIn = False	
+	session_state.knowledge_Database = ''
 #session_state2 = SessionState.get(logged_in_name='')
 if 'logged_in_name' not in st.session_state:
 	st.session_state.logged_in_name = ''	
@@ -82,6 +83,7 @@ elif choice == "Logout":
     #st.stop()
     st.experimental_rerun()
     demo_knowledge_Database = 'None'
+    session_state.knowledge_Database = ''
 #else:
 #    st.sidebar.text_input("Logged in as", session_state2.logged_in_name)
 #    st.write("Logged in as", session_state2.logged_in_name)
@@ -165,22 +167,24 @@ def generate_response(prompt_input, email, passwd):
         return 'hugchat.exceptions.ChatError: Model is overloaded'
 
 # User-provided prompt
+#if session_state.knowledge_Database != 'Pizza Resturant':
 if prompt := st.chat_input(disabled=not (hf_email and hf_pass)):
 #if prompt := st.chat_input(prompt): 
     if prompt != '':
-    	st.session_state.messages.append({"role": "user", "content": prompt})
+        st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.write(prompt)
 
 # Generate a new response if last message is not from assistant
-if st.session_state.messages[-1]["role"] != "assistant":
-    with st.chat_message("assistant"):
-        with st.spinner("Thinking..."):
-            response = generate_response(prompt, hf_email, hf_pass) 
-            st.write(prompt) #for debugging...
-            st.write(response) 
-    message = {"role": "assistant", "content": response}
-    st.session_state.messages.append(message)
+if session_state.knowledge_Database != 'Pizza Resturant':
+    if st.session_state.messages[-1]["role"] != "assistant":
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                response = generate_response(prompt, hf_email, hf_pass) 
+                st.write(prompt) #for debugging...
+                st.write(response) 
+        message = {"role": "assistant", "content": response}
+        st.session_state.messages.append(message)
 
 ### 1. Select a demo knowledge Database
 demo_knowledge_Database = st.sidebar.selectbox( 
@@ -188,8 +192,9 @@ demo_knowledge_Database = st.sidebar.selectbox(
     ('None', 'Trading Strategy', 'Pizza Resturant', 'Class Reunion (preparing...)'))
 ## Launch chat using different knowledge Database
 #if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
-if demo_knowledge_Database == 'Pizza Resturant':	
-    Pizza_Resturant.main_function()
+if demo_knowledge_Database == 'Pizza Resturant':
+    session_state.knowledge_Database = 'Pizza Resturant'
+    Pizza_Resturant.main_function(prompt)
 
 #DO ONLY ONCE !!! initialize the demo knowledge Database: Trading Strategy
 if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':

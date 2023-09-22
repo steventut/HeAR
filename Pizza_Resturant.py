@@ -1,4 +1,5 @@
 import openai #9/22/2023
+import streamlit as st
 
 ### Initialize openai Credentials
 openai.api_key = st.secrets['api']

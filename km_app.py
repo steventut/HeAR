@@ -198,7 +198,7 @@ demo_knowledge_Database = st.sidebar.selectbox(
 #if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
 if demo_knowledge_Database == 'Pizza Resturant':
     session_state.knowledge_Database = 'Pizza Resturant'
-    Pizza_Resturant.main_function()
+    Pizza_Resturant.main_function('')
 
 #DO ONLY ONCE !!! initialize the demo knowledge Database: Trading Strategy
 if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':

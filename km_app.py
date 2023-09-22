@@ -41,16 +41,15 @@ if 'logged_in_name' not in st.session_state:
 #session_state3 = SessionState.get(cwd='')
 if 'cwd' not in st.session_state:
 	st.session_state.cwd = ''	
-
+if 'isLoadedPizzaResturant' not in st.session_state:
+    st.session_state['isLoadedPizzaResturant'] = False
+	    
 menu = ["None: try it out without login","SignUp: for free","Login: for more functionalities"]
 if session_state.isLoggedIn:
     #st.sidebar.text_input("Logged in as", session_state2.logged_in_name)
     #st.write("Logged in as", session_state2.logged_in_name)
     #st.write("Current working directory:", session_state3.cwd)
     menu = ["Logged in as " + session_state2.logged_in_name, "Logout"]
-    if 'isLoadedPizzaResturant' not in st.session_state:
-        st.session_state['isLoadedPizzaResturant'] = False
-	
     #choice = st.sidebar.radio("Login or SignUp for free",menu)
     #if choice == "Logout":
     #    session_state.isLoggedIn = False

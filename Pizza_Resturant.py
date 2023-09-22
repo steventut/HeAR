@@ -29,7 +29,7 @@ def collect_messages(prompt):
             st.write(response) 
         message = {"role": "assistant", "content": response}
         st.session_state.messages.append(message)            
-        st.session_state.messages.append2(message)                    
+        st.session_state.messages2.append(message)                    
     #context.append({'role':'assistant', 'content':f"{response}"})
 
 ### main_function()

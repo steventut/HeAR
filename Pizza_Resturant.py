@@ -20,16 +20,16 @@ def collect_messages(prompt):
     #inp.value = ''
     #context.append({'role':'user', 'content':f"{prompt}"})
     st.session_state.messages.append({'role':'user', 'content':f"{prompt}"})    
-    st.session_state.messages2.append({'role':'user', 'content':f"{prompt}"})    
+    st.session_state.messages2.append([{'role':'user', 'content':f"{prompt}"}])    
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):    
             #response = get_completion_from_messages(context) 
             response = get_completion_from_messages(st.session_state.messages2)
-            st.write(prompt) #for debugging...
+            #st.write(prompt) #for debugging...
             st.write(response) 
         message = {"role": "assistant", "content": response}
         st.session_state.messages.append(message)            
-        st.session_state.messages2.append(message)                    
+        st.session_state.messages2.append([message])                    
     #context.append({'role':'assistant', 'content':f"{response}"})
 
 ### main_function()

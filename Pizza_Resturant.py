@@ -20,14 +20,16 @@ def collect_messages(prompt):
     #inp.value = ''
     #context.append({'role':'user', 'content':f"{prompt}"})
     st.session_state.messages.append({'role':'user', 'content':f"{prompt}"})    
+    st.session_state.messages2.append({'role':'user', 'content':f"{prompt}"})    
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):    
             #response = get_completion_from_messages(context) 
-            response = get_completion_from_messages(st.session_state.messages)
+            response = get_completion_from_messages(st.session_state.messages2)
             st.write(prompt) #for debugging...
             st.write(response) 
         message = {"role": "assistant", "content": response}
         st.session_state.messages.append(message)            
+        st.session_state.messages.append2(message)                    
     #context.append({'role':'assistant', 'content':f"{response}"})
 
 ### main_function()
@@ -63,8 +65,8 @@ coke 3.00, 2.00, 1.00 \
 sprite 3.00, 2.00, 1.00 \
 bottled water 5.00 \
 """} ]  # accumulate messages
-    #st.session_state.messages.append(context)    
-    st.session_state.messages = context
+    st.session_state.messages.append(context)    
+    st.session_state.messages2 = context
     collect_messages('')
 
 #inp = pn.widgets.TextInput(value="Hi", placeholder='Enter text here…')

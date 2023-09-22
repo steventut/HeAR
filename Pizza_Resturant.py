@@ -15,6 +15,7 @@ def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0)
     return response.choices[0].message["content"]
 
 def collect_messages(prompt):
+    global context
     #prompt = inp.value_input
     #inp.value = ''
     context.append({'role':'user', 'content':f"{prompt}"})
@@ -30,6 +31,7 @@ def collect_messages(prompt):
 ### main_function()
 ### main_function()
 def main_function(prompt):
+    global context
     context = [ {'role':'system', 'content':"""
 You are OrderBot, an automated service to collect orders for a pizza restaurant. \
 You first greet the customer, then collects the order, \

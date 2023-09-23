@@ -114,7 +114,7 @@ for message in st.session_state.messages:
 #if session_state.knowledge_Database != 'Pizza Resturant':
 #if prompt := st.chat_input(disabled=not api_key):
 #if prompt := st.chat_input(prompt): 
-prompt = st.chat_input(disabled=not api_key):
+prompt = st.chat_input(disabled=not api_key)
 if prompt != '':
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):

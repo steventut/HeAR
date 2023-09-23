@@ -15,7 +15,7 @@ with st.sidebar:
         #hf_email = st.secrets['EMAIL']
         #hf_pass = st.secrets['PASS']
 	#openai.api_key = st.secrets['api']
-	api_key = True
+        api_key = True
     else:
         #hf_email = st.text_input('Enter E-mail:', type='password')
         #hf_pass = st.text_input('Enter password:', type='password')

@@ -1,7 +1,7 @@
 import streamlit as st
 from hugchat import hugchat
 #from hugchat.login import Login
-import openai #9/22/2023  
+#import openai #9/22/2023  
 import Login_Codes #9/3/2023
 import Pizza_Resturant #9/22/2023
 
@@ -14,7 +14,8 @@ with st.sidebar:
         ##st.success('HuggingFace Login credentials already provided!', icon='✅')
         #hf_email = st.secrets['EMAIL']
         #hf_pass = st.secrets['PASS']
-	openai.api_key = st.secrets['api']
+	#openai.api_key = st.secrets['api']
+	pass
     else:
         #hf_email = st.text_input('Enter E-mail:', type='password')
         #hf_pass = st.text_input('Enter password:', type='password')
@@ -99,61 +100,6 @@ elif choice == "Logout":
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = False
     st.session_state.isLoadedChineseMedicine = False	
-	
-#else:
-#    st.sidebar.text_input("Logged in as", session_state2.logged_in_name)
-#    st.write("Logged in as", session_state2.logged_in_name)
-#v1.6 login: end!    
-
-### select demo KM database
-def load_demo_knowledge_Database_trading_trategy():
-    prompt = '''The following models are trading strategies categorized as Examples-1-Models.
-
-Model 1:
-HYPOTHESIS: If a company efficiently uses its assets (equipment, patents etc.) to generate
-sales, its stock may outperform the stock of its peers in the future. Denoted by the asset
-turnover ratio : sales/assets
-IMPLEMENTATION: If company A's asset turnover ratio is better than company B's, stock A
-may outperform stock B. However, directly using the input (sales/assets) may put unusually
-large long positions (buy) or short positions (sell) on outlier stocks. Rank operator removes
-the vast variation of input values by ranking the input and returning float numbers equally
-distributed between 0 and 1.
-IMPROVEMENT: Find and simulate more fundamental ratios that are factors in determining
-a company's performance and financial health.
-Datafields: sales, assets
-Operators: rank
-Expression:
-rank(sales / assets)
-
-Model 2:
-HYPOTHESIS: If the stock price of a company has increased over the last 2 days, it may
-decrease in the future (time series delta of closing price today and closing price 2 days ago).
-IMPLEMENTATION: If company A's stock price had increased twice as much as the stock
-price of another company B, the prices of both stocks may decrease in the future. In this
-reversion example, stock A may not fall double stock B, though it may fall more than stock B
-(rank operator).
-IMPROVEMENT: Can different neutralizations and decay settings improve this signal?
-Under what neutralization would a reversion idea work best?
-Datafields: close
-Operators: rank, ts_delta
-Expression:
-rank(-ts_delta(close, 2))
-
-Model 3:
-HYPOTHESIS: If today's stock price is higher than the geometric mean price of the week
-[time series product of price over 5 days raised to power (1/5)], then the stock price may fall
-in the future.
-IMPLEMENTATION: Directly using the input (close-ts_product(close,5)^0.2) may put
-unusually large long positions (buy) or short positions (sell) on outlier stocks. Rank operator
-removes the vast variation of input values by ranking the input and returning float numbers
-equally distributed between 0 and 1.
-IMPROVEMENT: How do you handle outlier values? Under what neutralization would a
-reversion idea work best?
-Datafields: close
-Operators: ts_product
-Expression:
-ts_product(close, 5) ^ 0.2 - close'''
-    return prompt
 
 ### MAIN CODES
 # Display chat messages
@@ -212,7 +158,7 @@ demo_knowledge_Database = st.sidebar.selectbox(
 ## Launch chat using different knowledge Database, ### DO ONLY ONCE !!! initialize the demo knowledge Database
 if demo_knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPizzaResturant == False:
     session_state.knowledge_Database = 'Pizza Resturant'
-    Pizza_Resturant.main_function('')
+    knowledge_Database.LoadPizzaResturant('')
     st.session_state.isLoadedPizzaResturant = True
     st.session_state.isLoadedTradingStrategy = False
     st.session_state.isLoadedChineseMedicine = False	

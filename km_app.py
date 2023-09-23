@@ -8,7 +8,7 @@ import knowledge_Database #9/22/2023
 ### Initialize Hugging Face Credentials
 with st.sidebar:
     ##st.title('🤗💬 HugChat')
-    st.title('企業智識庫機器人2')
+    st.title('企業智識庫機器人')
     #if ('EMAIL' in st.secrets) and ('PASS' in st.secrets):
     if 'api' in st.secrets:
         ##st.success('HuggingFace Login credentials already provided!', icon='✅')
@@ -145,8 +145,8 @@ elif session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy' 
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = True 
     st.session_state.isLoadedChineseMedicine = False	
-elif demo_knowledge_Database == 'Chinese Medicine' and st.session_state.isLoadedChineseMedicine == False:
-    session_state.knowledge_Database = 'Chinese Medicine'
+elif demo_knowledge_Database == '中醫客服機器人' and st.session_state.isLoadedChineseMedicine == False:
+    session_state.knowledge_Database = '中醫客服機器人'
     knowledge_Database.LoadTChineseMedicine('')
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = False 

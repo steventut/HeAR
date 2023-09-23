@@ -165,5 +165,5 @@ if demo_knowledge_Database == '中醫客服機器人':
     ('None', '請問星期日有看診嗎', '請問陳國揚醫師星期一有沒有看診', '請問張維量醫師門診時間', 'Ask your own question!'))
 
 # ask a question by Selecting a question to ask knowledge Database
-if session_state.isLoggedIn and demo_knowledge_Database != 'None' and question != 'None' and question != 'Ask your own question!':
+if demo_knowledge_Database != 'None' and question != 'None' and question != 'Ask your own question!':
     knowledge_Database.collect_messages(question)

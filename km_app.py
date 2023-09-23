@@ -19,7 +19,7 @@ with st.sidebar:
     else:
         #hf_email = st.text_input('Enter E-mail:', type='password')
         #hf_pass = st.text_input('Enter password:', type='password')
-	api_key = st.text_input('Enter api_key:', type='password')
+        api_key = st.text_input('Enter api_key:', type='password')
         #if not (hf_email and hf_pass):
 	if not api_key:
             st.warning('Please enter your credentials!', icon='⚠️')

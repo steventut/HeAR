@@ -163,11 +163,11 @@ def generate_response(prompt_input, email, passwd):
         ##chatbot.switch_llm(0) # switch to OpenAssistant/oasst-sft-6-llama-30b-xor
         ##chatbot.switch_llm(1) # switch to meta-llama/Llama-2-70b-chat-hf
     #return chatbot.chat(prompt_input)
-    try:
-        response = st.session_state.isLoggedInChatBot.chat(prompt_input)
-        return response
-    except:
-        return 'hugchat.exceptions.ChatError: Model is overloaded'
+    ##try:
+    response = st.session_state.isLoggedInChatBot.chat(prompt_input)
+    return response
+    ##except:
+        ##return 'hugchat.exceptions.ChatError: Model is overloaded'
 
 # User-provided prompt
 #if session_state.knowledge_Database != 'Pizza Resturant':

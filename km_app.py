@@ -127,7 +127,7 @@ demo_knowledge_Database = st.sidebar.selectbox(
     ('None', 'Pizza Resturant', 'Trading Strategy', '中醫客服機器人'))
 ## Launch chat using different knowledge Database, ### DO ONLY ONCE !!! initialize the demo knowledge Database
 if not session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':				     
-    st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more autoML functionalities!")
+    st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more functionalities!")
 
 if demo_knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPizzaResturant == False:
     session_state.knowledge_Database = 'Pizza Resturant'

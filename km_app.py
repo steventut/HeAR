@@ -121,10 +121,14 @@ if prompt := st.chat_input(disabled=not api_key):
         knowledge_Database.collect_messages(prompt)
 
 ### 1. Select a demo knowledge Database
+# Trading Strategy: need login to protect trade secret !! others: don't need to login
 demo_knowledge_Database = st.sidebar.selectbox( 
     '1. Select a Knowledge Database (選擇知識庫)',
-    ('None', 'Trading Strategy', 'Pizza Resturant', 'Class Reunion (preparing...)', '中醫客服機器人'))
+    ('None', 'Pizza Resturant', 'Trading Strategy', '中醫客服機器人'))
 ## Launch chat using different knowledge Database, ### DO ONLY ONCE !!! initialize the demo knowledge Database
+if not session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':				     
+    st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more autoML functionalities!")
+
 if demo_knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPizzaResturant == False:
     session_state.knowledge_Database = 'Pizza Resturant'
     knowledge_Database.LoadPizzaResturant('')
@@ -137,14 +141,12 @@ elif session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy' 
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = True 
     st.session_state.isLoadedChineseMedicine = False	
-elif session_state.isLoggedIn and demo_knowledge_Database == 'Chinese Medicine' and st.session_state.isLoadedChineseMedicine == False:
+elif demo_knowledge_Database == 'Chinese Medicine' and st.session_state.isLoadedChineseMedicine == False:
     session_state.knowledge_Database = 'Chinese Medicine'
     knowledge_Database.LoadTChineseMedicine('')
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = False 
     st.session_state.isLoadedChineseMedicine = True 
-elif demo_knowledge_Database != 'None':
-   st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more autoML functionalities!")
 	
 ### 2. Select a question to ask knowledge Database
 if demo_knowledge_Database == 'None':

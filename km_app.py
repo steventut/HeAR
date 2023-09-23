@@ -8,7 +8,7 @@ import knowledge_Database #9/22/2023
 ### Initialize Hugging Face Credentials
 with st.sidebar:
     ##st.title('🤗💬 HugChat')
-    st.title('企業智識庫機器人')
+    st.title('企業智識庫機器人2')
     #if ('EMAIL' in st.secrets) and ('PASS' in st.secrets):
     if 'api' in st.secrets:
         ##st.success('HuggingFace Login credentials already provided!', icon='✅')

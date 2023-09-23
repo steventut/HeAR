@@ -15,7 +15,7 @@ with st.sidebar:
         #hf_email = st.secrets['EMAIL']
         #hf_pass = st.secrets['PASS']
 	#openai.api_key = st.secrets['api']
-	pass
+	api_key = True
     else:
         #hf_email = st.text_input('Enter E-mail:', type='password')
         #hf_pass = st.text_input('Enter password:', type='password')
@@ -110,14 +110,13 @@ for message in st.session_state.messages:
 
 # User-provided prompt
 #if session_state.knowledge_Database != 'Pizza Resturant':
-if prompt := st.chat_input(disabled=not (hf_email and hf_pass)):
+if prompt := st.chat_input(disabled=not api_key):
 #if prompt := st.chat_input(prompt): 
     if prompt != '':
         st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.write(prompt)
-if session_state.knowledge_Database  != 'None':
-    knowledge_Database.collect_messages(prompt)
+        with st.chat_message("user"):
+            st.write(prompt)
+        knowledge_Database.collect_messages(prompt)
 
 ### 1. Select a demo knowledge Database
 demo_knowledge_Database = st.sidebar.selectbox( 

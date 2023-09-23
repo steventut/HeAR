@@ -21,7 +21,7 @@ with st.sidebar:
         #hf_pass = st.text_input('Enter password:', type='password')
         api_key = st.text_input('Enter api_key:', type='password')
         #if not (hf_email and hf_pass):
-	if not api_key:
+        if not api_key:
             st.warning('Please enter your credentials!', icon='⚠️')
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')

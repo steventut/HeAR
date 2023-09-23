@@ -114,14 +114,14 @@ for message in st.session_state.messages:
 
 # User-provided prompt
 #if session_state.knowledge_Database != 'Pizza Resturant':
-#if prompt := st.chat_input(disabled=not api_key):
+if prompt := st.chat_input(disabled=not api_key):
 #if prompt := st.chat_input(prompt): 
-prompt = st.chat_input(disabled=not api_key)
-if prompt != '':
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.write(prompt)
-    knowledge_Database.collect_messages(prompt)
+#prompt = st.chat_input(disabled=not api_key)
+	if prompt != '':
+	    st.session_state.messages.append({"role": "user", "content": prompt})
+	    with st.chat_message("user"):
+	        st.write(prompt)
+	    knowledge_Database.collect_messages(prompt)
 
 ### 1. Select a demo knowledge Database
 # Trading Strategy: need login to protect trade secret !! others: don't need to login

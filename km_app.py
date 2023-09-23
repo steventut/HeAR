@@ -37,7 +37,7 @@ def rerun():
 session_state = st.session_state
 session_state2 = st.session_state
 session_state3 = st.session_state
-session_state4 = st.session_state	
+#session_state4 = st.session_state	
 if 'isLoggedIn' not in st.session_state:
 	st.session_state.isLoggedIn = False	
 	session_state.knowledge_Database = ''
@@ -108,27 +108,6 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
 
-# Function for generating LLM response
-def generate_response(prompt_input, email, passwd):
-    if 'isLoggedInChatBot' not in st.session_state:
-	#st.session_state.isLoggedInChatBot = False
-        # Hugging Face Login
-        sign = Login(email, passwd)
-        cookies = sign.login()
-        # Create ChatBot                        
-        chatbot = hugchat.ChatBot(cookies=cookies.get_dict())
-        st.session_state.isLoggedInChatBot = chatbot
-        ## Feature Request: Ability to select model #56
-        # switch LLM,
-        ##chatbot.switch_llm(0) # switch to OpenAssistant/oasst-sft-6-llama-30b-xor
-        ##chatbot.switch_llm(1) # switch to meta-llama/Llama-2-70b-chat-hf
-    #return chatbot.chat(prompt_input)
-    ##try:
-    response = st.session_state.isLoggedInChatBot.chat(prompt_input)
-    return response
-    ##except:
-        ##return 'hugchat.exceptions.ChatError: Model is overloaded'
-
 # User-provided prompt
 #if session_state.knowledge_Database != 'Pizza Resturant':
 if prompt := st.chat_input(disabled=not (hf_email and hf_pass)):
@@ -188,6 +167,27 @@ if session_state.isLoggedIn and demo_knowledge_Database != 'None' and question !
     knowledge_Database.collect_messages(question)
 
 '''
+# Function for generating LLM response
+def generate_response(prompt_input, email, passwd):
+    if 'isLoggedInChatBot' not in st.session_state:
+	#st.session_state.isLoggedInChatBot = False
+        # Hugging Face Login
+        sign = Login(email, passwd)
+        cookies = sign.login()
+        # Create ChatBot                        
+        chatbot = hugchat.ChatBot(cookies=cookies.get_dict())
+        st.session_state.isLoggedInChatBot = chatbot
+        ## Feature Request: Ability to select model #56
+        # switch LLM,
+        ##chatbot.switch_llm(0) # switch to OpenAssistant/oasst-sft-6-llama-30b-xor
+        ##chatbot.switch_llm(1) # switch to meta-llama/Llama-2-70b-chat-hf
+    #return chatbot.chat(prompt_input)
+    ##try:
+    response = st.session_state.isLoggedInChatBot.chat(prompt_input)
+    return response
+    ##except:
+        ##return 'hugchat.exceptions.ChatError: Model is overloaded'
+
 #DO ONLY ONCE !!! initialize the demo knowledge Database: Trading Strategy
 if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
     #data3 = get_dataset(uploaded_file) #Steve: v1.9

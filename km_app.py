@@ -1,9 +1,9 @@
 import streamlit as st
-from hugchat import hugchat
+#from hugchat import hugchat
 #from hugchat.login import Login
 #import openai #9/22/2023  
 import Login_Codes #9/3/2023
-import Pizza_Resturant #9/22/2023
+import knowledge_Database #9/22/2023
 
 ### Initialize Hugging Face Credentials
 with st.sidebar:
@@ -59,6 +59,7 @@ if session_state.isLoggedIn:
     #st.sidebar.text_input("Logged in as", session_state2.logged_in_name)
     #st.write("Logged in as", session_state2.logged_in_name)
     #st.write("Current working directory:", session_state3.cwd)
+	
     menu = ["Logged in as " + session_state2.logged_in_name, "Logout"]
     #choice = st.sidebar.radio("Login or SignUp for free",menu)
     #if choice == "Logout":
@@ -91,7 +92,7 @@ elif choice == "Logout":
     session_state.isLoggedIn = False
     session_state2.logged_in_name = ''
     session_state3.cwd = ''
-    session_state4.train_data = ''
+    #session_state4.train_data = ''
     ##rerun() #9/13/2023
     #st.stop()
     st.experimental_rerun()
@@ -136,20 +137,8 @@ if prompt := st.chat_input(disabled=not (hf_email and hf_pass)):
         st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.write(prompt)
-
-if session_state.knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPizzaResturant == True:
-    Pizza_Resturant.collect_messages(prompt)
-
-# Generate a new response if last message is not from assistant
-if session_state.knowledge_Database != 'Pizza Resturant':
-    if st.session_state.messages[-1]["role"] != "assistant":
-        with st.chat_message("assistant"):
-            with st.spinner("Thinking..."):
-                response = generate_response(prompt, hf_email, hf_pass) 
-                st.write(prompt) #for debugging...
-                st.write(response) 
-        message = {"role": "assistant", "content": response}
-        st.session_state.messages.append(message)
+if session_state.knowledge_Database  != 'None':
+    knowledge_Database.collect_messages(prompt)
 
 ### 1. Select a demo knowledge Database
 demo_knowledge_Database = st.sidebar.selectbox( 
@@ -177,6 +166,28 @@ elif session_state.isLoggedIn and demo_knowledge_Database == 'Chinese Medicine' 
 elif demo_knowledge_Database != 'None':
    st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more autoML functionalities!")
 	
+### 2. Select a question to ask knowledge Database
+if demo_knowledge_Database == 'None':
+    question = st.sidebar.selectbox( 
+    '2. Select a question to ask knowledge Database (發問)',('None'))
+if demo_knowledge_Database == 'Trading Strategy':
+    question = st.sidebar.selectbox( 
+    '2. Select a question to ask knowledge Database (發問)',
+    ('None', 'Can you create a new strategy based on these models?', 'List all models.', 'Create one more new model.', 'Ask your own question!'))
+if demo_knowledge_Database == 'Pizza Resturant':
+    question = st.sidebar.selectbox( 
+    '2. Select a question to ask knowledge Database (發問)',
+    ('None', 'I would like to order a pizza.', 'Pepperoni Large', 'no topping, but give me small coke!', 'List the detail of the order and total amount', 'Ask your own question!'))
+if demo_knowledge_Database == '中醫客服機器人':
+    question = st.sidebar.selectbox( 
+    '2. Select a question to ask knowledge Database (發問)',
+    ('None', '請問星期日有看診嗎', '請問陳國揚醫師星期一有沒有看診', '請問張維量醫師門診時間', 'Ask your own question!'))
+
+# ask a question by Selecting a question to ask knowledge Database
+if session_state.isLoggedIn and demo_knowledge_Database != 'None' and question != 'None' and question != 'Ask your own question!':
+    knowledge_Database.collect_messages(question)
+
+'''
 #DO ONLY ONCE !!! initialize the demo knowledge Database: Trading Strategy
 if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':
     #data3 = get_dataset(uploaded_file) #Steve: v1.9
@@ -198,23 +209,17 @@ elif demo_knowledge_Database == 'Pizza Resturant':
 elif demo_knowledge_Database != 'None':
    st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more autoML functionalities!")
 
-### 2. Select a question to ask knowledge Database
-if demo_knowledge_Database == 'None':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledge Database (發問)',('None'))
-if demo_knowledge_Database == 'Trading Strategy':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledge Database (發問)',
-    ('None', 'Can you create a new strategy based on these models?', 'List all models.', 'Create one more new model.', 'Ask your own question!'))
-if demo_knowledge_Database == 'Pizza Resturant':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledge Database (發問)',
-    ('None', 'I would like to order a pizza.', 'Pepperoni Large', 'no topping, but give me small coke!', 'List the detail of the order and total amount', 'Ask your own question!'))
-if demo_knowledge_Database == '中醫客服機器人':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledge Database (發問)',
-    ('None', '請問星期日有看診嗎', '請問陳國揚醫師星期一有沒有看診', '請問張維量醫師門診時間', 'Ask your own question!'))
-	
+# Generate a new response if last message is not from assistant
+if session_state.knowledge_Database != 'Pizza Resturant':
+    if st.session_state.messages[-1]["role"] != "assistant":
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                response = generate_response(prompt, hf_email, hf_pass) 
+                st.write(prompt) #for debugging...
+                st.write(response) 
+        message = {"role": "assistant", "content": response}
+        st.session_state.messages.append(message)
+
 # ask a question...
 if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy' and question != 'None' and question != 'Ask your own question!':
     #data3 = get_dataset(uploaded_file) #Steve: v1.9
@@ -234,3 +239,4 @@ if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy' an
         st.session_state.messages.append(message)
 #elif question != 'None' or question != 'Ask your own question!':
 #   st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more autoML functionalities!")
+'''

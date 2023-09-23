@@ -168,4 +168,7 @@ if demo_knowledge_Database == '中醫客服機器人':
 
 # ask a question by Selecting a question to ask knowledge Database
 if demo_knowledge_Database != 'None' and question != 'None' and question != 'Ask your own question!':
+    st.session_state.messages.append({"role": "user", "content": question})
+    with st.chat_message("user"):
+        st.write(question)	
     knowledge_Database.collect_messages(question)

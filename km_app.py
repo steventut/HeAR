@@ -149,18 +149,19 @@ elif demo_knowledge_Database != 'None':
 ### 2. Select a question to ask knowledge Database
 if demo_knowledge_Database == 'None':
     question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledge Database (發問)',('None'))
+    '2. Select a question to ask knowledgeBase (發問)',
+    ('None',))
 if demo_knowledge_Database == 'Trading Strategy':
     question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledge Database (發問)',
+    '2. Select a question to ask knowledgeBase (發問)',
     ('None', 'Can you create a new strategy based on these models?', 'List all models.', 'Create one more new model.', 'Ask your own question!'))
 if demo_knowledge_Database == 'Pizza Resturant':
     question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledge Database (發問)',
+    '2. Select a question to ask knowledgeBase (發問)',
     ('None', 'I would like to order a pizza.', 'Pepperoni Large', 'no topping, but give me small coke!', 'List the detail of the order and total amount', 'Ask your own question!'))
 if demo_knowledge_Database == '中醫客服機器人':
     question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledge Database (發問)',
+    '2. Select a question to ask knowledgeBase (發問)',
     ('None', '請問星期日有看診嗎', '請問陳國揚醫師星期一有沒有看診', '請問張維量醫師門診時間', 'Ask your own question!'))
 
 # ask a question by Selecting a question to ask knowledge Database

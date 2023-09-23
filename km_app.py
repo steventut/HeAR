@@ -216,7 +216,7 @@ if demo_knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPiz
     st.session_state.isLoadedPizzaResturant = True
     st.session_state.isLoadedTradingStrategy = False
     st.session_state.isLoadedChineseMedicine = False	
-if session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy' and st.session_state.isLoadedTradingStrategy == False:
+elif session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy' and st.session_state.isLoadedTradingStrategy == False:
     session_state.knowledge_Database = 'Trading Strategy'
     knowledge_Database.LoadTradingStrategy('')
     st.session_state.isLoadedPizzaResturant = False

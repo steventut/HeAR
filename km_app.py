@@ -30,6 +30,8 @@ with st.sidebar:
 # Store LLM generated responses
 if "messages" not in st.session_state.keys():
     st.session_state.messages = [{"role": "assistant", "content": "企業智識庫機器人在此提供諮詢服務，How may I help you?"}]
+if "messages2" not in st.session_state.keys():
+    st.session_state.messages2 = []
 
 ### initialize login 
 def rerun():

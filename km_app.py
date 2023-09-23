@@ -114,6 +114,7 @@ for message in st.session_state.messages:
 
 # User-provided prompt
 #if session_state.knowledge_Database != 'Pizza Resturant':
+prompt = ''
 if prompt := st.chat_input(disabled=not api_key):
 #if prompt := st.chat_input(prompt): 
 #prompt = st.chat_input(disabled=not api_key)

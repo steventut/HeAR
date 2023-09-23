@@ -43,6 +43,8 @@ session_state3 = st.session_state
 if 'isLoggedIn' not in st.session_state:
 	st.session_state.isLoggedIn = False	
 	session_state.knowledge_Database = ''
+	demo_knowledge_Database = 'None'
+	question = 'None'
 #session_state2 = SessionState.get(logged_in_name='')
 if 'logged_in_name' not in st.session_state:
 	st.session_state.logged_in_name = ''	

@@ -15,7 +15,7 @@ def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0)
     #   print(str(response.choices[0].message))
         return response.choices[0].message["content"]
     except:
-        return openai.error.RateLimitError
+        return openai.error.RateLimitError()
         #return response.choices[0].message["content"]
         
 def collect_messages(prompt):

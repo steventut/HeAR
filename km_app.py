@@ -182,7 +182,7 @@ if prompt is None and demo_knowledge_Database != 'None' and question != 'None' a
     if assistant_reply.find('RateLimitError') != -1: #find it, load knowledge database again => send SYSTEM message
         if demo_knowledge_Database == 'Pizza Resturant':
             knowledge_Database.LoadPizzaResturant('')
-	elif demo_knowledge_Database == 'Trading Strategy':
+        elif demo_knowledge_Database == 'Trading Strategy':
             knowledge_Database.LoadTradingStrategy('')	
-	elif demo_knowledge_Database == '中醫客服機器人':
+        elif demo_knowledge_Database == '中醫客服機器人':
             knowledge_Database.LoadTChineseMedicine('')

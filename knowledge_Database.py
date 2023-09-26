@@ -17,6 +17,7 @@ def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0)
         return response.choices[0].message["content"]
     except:
         st.session_state.isOpenAiAPIError = True
+        st.session_state.isOpenAiAPIErrorEver = True
         return openai.error.RateLimitError()
         #return response.choices[0].message["content"]
         

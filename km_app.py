@@ -127,6 +127,8 @@ if prompt := st.chat_input(disabled=not api_key):
 	    st.session_state.messages.append({"role": "user", "content": prompt})
 	    with st.chat_message("user"):
 	        st.write(prompt)
+            if st.session_state.isOpenAiAPIError == False and st.session_state.isOpenAiAPIErrorEver == True:
+                time.sleep(10) # Sleep for 3 seconds	
 	    knowledge_Database.collect_messages(prompt)
 
 ### 1. Select a demo knowledge Database

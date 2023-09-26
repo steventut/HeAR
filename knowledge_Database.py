@@ -18,8 +18,9 @@ def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0)
     except:
         st.session_state.isOpenAiAPIError = True
         st.session_state.isOpenAiAPIErrorEver = True
-        return openai.error.RateLimitError()
-        #return response.choices[0].message["content"]
+        return 'There is rate limit for the demo system. Please wait...\n(這是展示用版本，有流量限制。使用上線用版本，無流量限制。請稍後。。。)'
+        #return openai.error.RateLimitError()
+        ##return response.choices[0].message["content"]
         
 def collect_messages(prompt):
     #global context

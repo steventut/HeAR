@@ -72,7 +72,7 @@ sprite 3.00, 2.00, 1.00 \
 bottled water 5.00 \
 """} ]  # accumulate messages 
     #st.session_state.messages2 = context
-    st.session_state.messages.append(context) 
+    st.session_state.messages2.append(context) 
     collect_messages('')
 
 def LoadTradingStrategy(prompt):

@@ -173,6 +173,17 @@ if demo_knowledge_Database == '中醫客服機器人':
     '2. Select a question to ask knowledgeBase (發問)',
     ('None', '請問星期日有看診嗎', '請問陳國揚醫師星期一有沒有看診', '請問張維量醫師門診時間', 'Ask your own question!'))
 
+# ask a question by Selecting a question to ask knowledge Database
+#st.write(prompt)
+#st.write(question)
+if prompt is None and demo_knowledge_Database != 'None' and question != 'None' and question != 'Ask your own question!':
+    st.session_state.messages.append({"role": "user", "content": question})
+    with st.chat_message("user"):
+        st.write(question)	
+    #if st.session_state.isOpenAiAPIError == True:
+    #    time.sleep(10) # Sleep for 3 seconds
+    knowledge_Database.collect_messages(question)
+
 ### SOS
 #assistant_reply = str(st.session_state.messages[-1]["content"])
 #if assistant_reply.find('RateLimitError') != -1: #find it, load knowledge database again => send SYSTEM message
@@ -184,14 +195,3 @@ if st.session_state.isOpenAiAPIError == True:
         knowledge_Database.LoadTradingStrategy('')	
     elif demo_knowledge_Database == '中醫客服機器人':
         knowledge_Database.LoadTChineseMedicine('')
-
-# ask a question by Selecting a question to ask knowledge Database
-#st.write(prompt)
-#st.write(question)
-if prompt is None and demo_knowledge_Database != 'None' and question != 'None' and question != 'Ask your own question!':
-    st.session_state.messages.append({"role": "user", "content": question})
-    with st.chat_message("user"):
-        st.write(question)	
-    if st.session_state.isOpenAiAPIError == True:
-        time.sleep(10) # Sleep for 3 seconds
-    knowledge_Database.collect_messages(question)

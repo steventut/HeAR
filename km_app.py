@@ -179,7 +179,7 @@ if prompt is None and demo_knowledge_Database != 'None' and question != 'None' a
         st.write(question)	
     knowledge_Database.collect_messages(question)
     assistant_reply = str(st.session_state.messages[-1]["content"])
-    if assistant_reply.find('rate_limit') != -1: #find it, load knowledge database again => send SYSTEM message
+    if assistant_reply.find('RateLimitError') != -1: #find it, load knowledge database again => send SYSTEM message
         st.session_state.isLoadedPizzaResturant = False
         st.session_state.isLoadedTradingStrategy = False
         st.session_state.isLoadedChineseMedicine = False	        

@@ -114,17 +114,6 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
 
-### SOS
-#assistant_reply = str(st.session_state.messages[-1]["content"])
-#if assistant_reply.find('RateLimitError') != -1: #find it, load knowledge database again => send SYSTEM message
-if st.session_state.isOpenAiAPIError == True:
-    if demo_knowledge_Database == 'Pizza Resturant':
-        knowledge_Database.LoadPizzaResturant('')
-    elif demo_knowledge_Database == 'Trading Strategy':
-        knowledge_Database.LoadTradingStrategy('')	
-    elif demo_knowledge_Database == '中醫客服機器人':
-        knowledge_Database.LoadTChineseMedicine('')
-
 # User-provided prompt
 #if session_state.knowledge_Database != 'Pizza Resturant':
 prompt = ''
@@ -191,3 +180,14 @@ if prompt is None and demo_knowledge_Database != 'None' and question != 'None' a
     with st.chat_message("user"):
         st.write(question)	
     knowledge_Database.collect_messages(question)
+
+### SOS
+#assistant_reply = str(st.session_state.messages[-1]["content"])
+#if assistant_reply.find('RateLimitError') != -1: #find it, load knowledge database again => send SYSTEM message
+if st.session_state.isOpenAiAPIError == True:
+    if demo_knowledge_Database == 'Pizza Resturant':
+        knowledge_Database.LoadPizzaResturant('')
+    elif demo_knowledge_Database == 'Trading Strategy':
+        knowledge_Database.LoadTradingStrategy('')	
+    elif demo_knowledge_Database == '中醫客服機器人':
+        knowledge_Database.LoadTChineseMedicine('')

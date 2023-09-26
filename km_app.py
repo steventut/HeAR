@@ -9,7 +9,7 @@ import time
 ### Initialize Hugging Face Credentials
 with st.sidebar:
     ##st.title('🤗💬 HugChat')
-    st.title('企業智識庫機器人3')
+    st.title('企業智識庫機器人')
     #if ('EMAIL' in st.secrets) and ('PASS' in st.secrets):
     if 'api' in st.secrets:
         ##st.success('HuggingFace Login credentials already provided!', icon='✅')
@@ -192,7 +192,8 @@ if prompt is None and demo_knowledge_Database != 'None' and question != 'None' a
 #assistant_reply = str(st.session_state.messages[-1]["content"])
 #if assistant_reply.find('RateLimitError') != -1: #find it, load knowledge database again => send SYSTEM message
 if st.session_state.isOpenAiAPIError == True and st.session_state.isOpenAiAPIErrorEver == True:
-    time.sleep(60) # Sleep for 60 seconds and 
+    #time.sleep(60) # Sleep for 60 seconds and 
+    st.write('智識庫機器人忙碌中，請稍後。。。')
 #    if demo_knowledge_Database == 'Pizza Resturant':
 #        knowledge_Database.LoadPizzaResturant('')
 #    elif demo_knowledge_Database == 'Trading Strategy':

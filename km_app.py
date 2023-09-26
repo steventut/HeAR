@@ -192,10 +192,10 @@ if prompt is None and demo_knowledge_Database != 'None' and question != 'None' a
 #assistant_reply = str(st.session_state.messages[-1]["content"])
 #if assistant_reply.find('RateLimitError') != -1: #find it, load knowledge database again => send SYSTEM message
 if st.session_state.isOpenAiAPIError == True and st.session_state.isOpenAiAPIErrorEver == True:
-    time.sleep(60) # Sleep for 3 seconds and 
-    if demo_knowledge_Database == 'Pizza Resturant':
-        knowledge_Database.LoadPizzaResturant('')
-    elif demo_knowledge_Database == 'Trading Strategy':
-        knowledge_Database.LoadTradingStrategy('')	
-    elif demo_knowledge_Database == '中醫客服機器人':
-        knowledge_Database.LoadTChineseMedicine('')
+    time.sleep(60) # Sleep for 60 seconds and 
+#    if demo_knowledge_Database == 'Pizza Resturant':
+#        knowledge_Database.LoadPizzaResturant('')
+#    elif demo_knowledge_Database == 'Trading Strategy':
+#        knowledge_Database.LoadTradingStrategy('')	
+#    elif demo_knowledge_Database == '中醫客服機器人':
+#        knowledge_Database.LoadTChineseMedicine('')

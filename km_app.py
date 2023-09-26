@@ -183,4 +183,4 @@ if prompt is None and demo_knowledge_Database != 'None' and question != 'None' a
         st.session_state.isLoadedPizzaResturant = False
         st.session_state.isLoadedTradingStrategy = False
         st.session_state.isLoadedChineseMedicine = False
-        st.write(find it!!!)
+        st.write('find it!!!')

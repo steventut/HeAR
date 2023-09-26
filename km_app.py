@@ -180,6 +180,8 @@ if prompt is None and demo_knowledge_Database != 'None' and question != 'None' a
     st.session_state.messages.append({"role": "user", "content": question})
     with st.chat_message("user"):
         st.write(question)	
+    if st.session_state.isOpenAiAPIError == True:
+        time.sleep(10) # Sleep for 3 seconds
     knowledge_Database.collect_messages(question)
 
 ### SOS

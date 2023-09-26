@@ -127,8 +127,8 @@ if prompt := st.chat_input(disabled=not api_key):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.write(prompt)
-        if st.session_state.isOpenAiAPIError == False and st.session_state.isOpenAiAPIErrorEver == True:
-            time.sleep(10) # Sleep for 3 seconds	
+        #if st.session_state.isOpenAiAPIError == False and st.session_state.isOpenAiAPIErrorEver == True:
+        #    time.sleep(10) # Sleep for 3 seconds	
         knowledge_Database.collect_messages(prompt)
 
 ### 1. Select a demo knowledge Database
@@ -184,15 +184,15 @@ if prompt is None and demo_knowledge_Database != 'None' and question != 'None' a
     st.session_state.messages.append({"role": "user", "content": question})
     with st.chat_message("user"):
         st.write(question)	
-    if st.session_state.isOpenAiAPIError == False and st.session_state.isOpenAiAPIErrorEver == True:
-        time.sleep(10) # Sleep for 3 seconds
+    #if st.session_state.isOpenAiAPIError == False and st.session_state.isOpenAiAPIErrorEver == True:
+    #    time.sleep(10) # Sleep for 3 seconds
     knowledge_Database.collect_messages(question)
 
 ### SOS
 #assistant_reply = str(st.session_state.messages[-1]["content"])
 #if assistant_reply.find('RateLimitError') != -1: #find it, load knowledge database again => send SYSTEM message
 if st.session_state.isOpenAiAPIError == True and st.session_state.isOpenAiAPIErrorEver == True:
-    time.sleep(20) # Sleep for 3 seconds and 
+    time.sleep(60) # Sleep for 3 seconds and 
     if demo_knowledge_Database == 'Pizza Resturant':
         knowledge_Database.LoadPizzaResturant('')
     elif demo_knowledge_Database == 'Trading Strategy':

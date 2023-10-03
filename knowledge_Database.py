@@ -50,10 +50,12 @@ def LoadTA(prompt):
     sheet_id = '1VBtBQw8-Ch02dVp1p7xTERybGI9DCOVbqywj013Ldsc' #1VBtBQw8-Ch02dVp1p7xTERybGI9DCOVbqywj013Ldsc
     url = f'https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
     df=pd.read_csv(url)
-    df
+    #df
+
+    KB = list(df.loc[0:0,"Knowledge"])
     
-    #st.session_state.messages2.append({'role':'system', 'content':KB})  # accumulate messages 
-    #collect_messages('')
+    st.session_state.messages2.append({'role':'system', 'content':KB[0})  # accumulate messages 
+    collect_messages('')
 
 def LoadPizzaResturant(prompt):
     #global context

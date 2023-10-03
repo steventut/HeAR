@@ -54,7 +54,7 @@ def LoadTA(prompt):
 
     KB = list(df.loc[0:0,"Knowledge"])
     
-    st.session_state.messages2.append({'role':'system', 'content':KB[0})  # accumulate messages 
+    st.session_state.messages2.append({'role':'system', 'content':KB[0]})  # accumulate messages 
     collect_messages('')
 
 def LoadPizzaResturant(prompt):

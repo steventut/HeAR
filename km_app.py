@@ -201,7 +201,7 @@ if demo_knowledge_Database == '中醫客服機器人':
 if demo_knowledge_Database == 'TA助教機器人':
     question = st.sidebar.selectbox( 
     '2. Select a question to ask knowledgeBase (發問)',
-    ('None', '請問課綱與教學進度', '請問評分方式', '請問老師會當人嗎?', '老師會帶我們參加比賽嗎?', 'Ask your own question!'))
+    ('None', '請問課程簡介', '請問學期成績計算方式', '請問老師會當人嗎?', '老師會帶我們參加比賽嗎?', 'Ask your own question!'))
 
 # ask a question by Selecting a question to ask knowledge Database
 #st.write(prompt)

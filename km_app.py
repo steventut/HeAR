@@ -1,3 +1,10 @@
+### Revision history
+## version 1.1 steps to add a new knowledge database
+## 1. add knowledge to knowledge_database
+## step-2. add an entry to Select a Knowledge Database (選擇知識庫)
+## step-3. add entries to Select a question to ask knowledgeBase (發問)
+## step-3. add codes to knowledge_Database
+
 import streamlit as st
 #from hugchat import hugchat
 #from hugchat.login import Login
@@ -58,6 +65,9 @@ if 'isLoadedTradingStrategy' not in st.session_state:
     st.session_state.isLoadedTradingStrategy = False
 if 'isLoadedChineseMedicine' not in st.session_state:
     st.session_state.isLoadedChineseMedicine = False
+if 'isLoadedTA' not in st.session_state:
+    st.session_state.isLoadedTA = False
+	
 if 'isOpenAiAPIError' not in st.session_state:
     st.session_state.isOpenAiAPIError = False
 if 'isOpenAiAPIErrorEver' not in st.session_state:
@@ -132,10 +142,11 @@ if prompt := st.chat_input(disabled=not api_key):
         knowledge_Database.collect_messages(prompt)
 
 ### 1. Select a demo knowledge Database
+step-2. add an entry to Select a Knowledge Database (選擇知識庫)
 # Trading Strategy: need login to protect trade secret !! others: don't need to login
 demo_knowledge_Database = st.sidebar.selectbox( 
     '1. Select a Knowledge Database (選擇知識庫)',
-    ('None', 'Pizza Resturant', 'Trading Strategy', '中醫客服機器人'))
+    ('None', 'Pizza Resturant', 'Trading Strategy', '中醫客服機器人', 'TA助教機器人'))
 ## Launch chat using different knowledge Database, ### DO ONLY ONCE !!! initialize the demo knowledge Database
 if not session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':				     
     st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more functionalities!")
@@ -146,20 +157,31 @@ if demo_knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPiz
     st.session_state.isLoadedPizzaResturant = True
     st.session_state.isLoadedTradingStrategy = False
     st.session_state.isLoadedChineseMedicine = False	
+    st.session_state.isLoadedTA = False 		
 elif session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy' and st.session_state.isLoadedTradingStrategy == False:
     session_state.knowledge_Database = 'Trading Strategy'
     knowledge_Database.LoadTradingStrategy('')
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = True 
     st.session_state.isLoadedChineseMedicine = False	
+    st.session_state.isLoadedTA = False
 elif demo_knowledge_Database == '中醫客服機器人' and st.session_state.isLoadedChineseMedicine == False:
     session_state.knowledge_Database = '中醫客服機器人'
     knowledge_Database.LoadTChineseMedicine('')
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = False 
     st.session_state.isLoadedChineseMedicine = True 
+    st.session_state.isLoadedTA = False
+elif demo_knowledge_Database == 'TA助教機器人' and st.session_state.isLoadedTA == False:
+    session_state.knowledge_Database = 'TA助教機器人'
+    knowledge_Database.LoadTA('')
+    st.session_state.isLoadedPizzaResturant = False
+    st.session_state.isLoadedTradingStrategy = False 
+    st.session_state.isLoadedChineseMedicine = False 	
+    st.session_state.isLoadedTA = True 		
 	
 ### 2. Select a question to ask knowledge Database
+## step-3. add entries to Select a question to ask knowledgeBase (發問)
 if demo_knowledge_Database == 'None':
     question = st.sidebar.selectbox( 
     '2. Select a question to ask knowledgeBase (發問)',
@@ -176,6 +198,10 @@ if demo_knowledge_Database == '中醫客服機器人':
     question = st.sidebar.selectbox( 
     '2. Select a question to ask knowledgeBase (發問)',
     ('None', '請問星期日有看診嗎', '請問陳國揚醫師星期一有沒有看診', '請問張維量醫師門診時間', 'Ask your own question!'))
+if demo_knowledge_Database == 'TA助教機器人':
+    question = st.sidebar.selectbox( 
+    '2. Select a question to ask knowledgeBase (發問)',
+    ('None', '請問課綱與教學進度', '請問評分方式', '請問老師會當人嗎?', '老師會帶我們參加比賽嗎?', 'Ask your own question!'))
 
 # ask a question by Selecting a question to ask knowledge Database
 #st.write(prompt)

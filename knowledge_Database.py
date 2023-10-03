@@ -1,5 +1,6 @@
 import openai #9/22/2023  
 import streamlit as st
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
 ### Initialize openai Credentials
 openai.api_key = st.secrets['api']
@@ -42,6 +43,18 @@ def collect_messages(prompt):
 
 ### main_function()
 ### main_function()
+def LoadTA(prompt):
+    #global context
+    #Change sheet name:
+    sheet_name = 'TA'
+    sheet_id = '1VBtBQw8-Ch02dVp1p7xTERybGI9DCOVbqywj013Ldsc' #1VBtBQw8-Ch02dVp1p7xTERybGI9DCOVbqywj013Ldsc
+    url = f'https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
+    df=pd.read_csv(url)
+    df
+    
+    #st.session_state.messages2.append({'role':'system', 'content':KB})  # accumulate messages 
+    #collect_messages('')
+
 def LoadPizzaResturant(prompt):
     #global context
     st.session_state.messages2.append({'role':'system', 'content':"""

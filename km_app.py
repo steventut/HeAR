@@ -142,7 +142,7 @@ if prompt := st.chat_input(disabled=not api_key):
         knowledge_Database.collect_messages(prompt)
 
 ### 1. Select a demo knowledge Database
-step-2. add an entry to Select a Knowledge Database (選擇知識庫)
+## step-2. add an entry to Select a Knowledge Database (選擇知識庫)
 # Trading Strategy: need login to protect trade secret !! others: don't need to login
 demo_knowledge_Database = st.sidebar.selectbox( 
     '1. Select a Knowledge Database (選擇知識庫)',

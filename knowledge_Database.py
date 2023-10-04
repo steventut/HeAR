@@ -52,7 +52,8 @@ def LoadTA(prompt):
     df=pd.read_csv(url)
     #df
     KB = list(df.loc[0:0,"Knowledge"])
-    st.session_state.messages2.append({'role':'system', 'content':KB[0]})  # accumulate messages 
+    #st.session_state.messages2.append({'role':'system', 'content':KB[0]})  # accumulate messages 
+    st.session_state.messages2 = [{'role':'system', 'content':KB[0]}] # NOT accumulate messages 
     collect_messages('')
 
 def LoadPizzaResturant(prompt):
@@ -62,7 +63,8 @@ def LoadPizzaResturant(prompt):
     df=pd.read_csv(url)
     #df
     KB = list(df.loc[0:0,"Knowledge"])
-    st.session_state.messages2.append({'role':'system', 'content':KB[0]})  # accumulate messages 
+    #st.session_state.messages2.append({'role':'system', 'content':KB[0]})  # accumulate messages 
+    st.session_state.messages2 = [{'role':'system', 'content':KB[0]}] # NOT accumulate messages     
     collect_messages('')
     
 def LoadPizzaResturant_old(prompt):

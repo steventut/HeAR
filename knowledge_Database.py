@@ -51,13 +51,21 @@ def LoadTA(prompt):
     url = f'https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
     df=pd.read_csv(url)
     #df
-
     KB = list(df.loc[0:0,"Knowledge"])
-    
     st.session_state.messages2.append({'role':'system', 'content':KB[0]})  # accumulate messages 
     collect_messages('')
 
 def LoadPizzaResturant(prompt):
+    sheet_name = 'Pizza' #Change sheet name:
+    sheet_id = '1VBtBQw8-Ch02dVp1p7xTERybGI9DCOVbqywj013Ldsc' #1VBtBQw8-Ch02dVp1p7xTERybGI9DCOVbqywj013Ldsc
+    url = f'https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
+    df=pd.read_csv(url)
+    #df
+    KB = list(df.loc[0:0,"Knowledge"])
+    st.session_state.messages2.append({'role':'system', 'content':KB[0]})  # accumulate messages 
+    collect_messages('')
+    
+def LoadPizzaResturant_old(prompt):
     #global context
     st.session_state.messages2.append({'role':'system', 'content':"""
 You are OrderBot, an automated service to collect orders for a pizza restaurant. \

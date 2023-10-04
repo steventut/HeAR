@@ -66,7 +66,20 @@ def LoadPizzaResturant(prompt):
     #st.session_state.messages2.append({'role':'system', 'content':KB[0]})  # accumulate messages 
     st.session_state.messages2 = [{'role':'system', 'content':KB[0]}] # NOT accumulate messages     
     collect_messages('')
-    
+
+def LoadTChineseMedicine(prompt):
+    sheet_name = 'ChineseMedicine' #Change sheet name:
+    sheet_id = '1VBtBQw8-Ch02dVp1p7xTERybGI9DCOVbqywj013Ldsc' #1VBtBQw8-Ch02dVp1p7xTERybGI9DCOVbqywj013Ldsc
+    url = f'https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
+    df=pd.read_csv(url)
+    #df
+    KB = list(df.loc[0:0,"Knowledge"])
+    #st.session_state.messages2.append({'role':'system', 'content':KB[0]})  # accumulate messages 
+    st.session_state.messages2 = [{'role':'system', 'content':KB[0]}] # NOT accumulate messages     
+    collect_messages('')
+
+### old codes
+### old codes
 def LoadPizzaResturant_old(prompt):
     #global context
     st.session_state.messages2.append({'role':'system', 'content':"""
@@ -155,7 +168,7 @@ ts_product(close, 5) ^ 0.2 - close
     st.session_state.messages2 = context
     collect_messages('')
 
-def LoadTChineseMedicine(prompt):
+def LoadTChineseMedicine_old(prompt):
     #global context
     context = [ {'role':'system', 'content':"""
 你是一個中醫的客服機器人，聆聽客戶的問題，並且依據所提供的中醫客服資料庫，來自動回答客戶的的問題。你首先歡迎客戶使用ABC中醫客服機器人，然後聆聽客戶的問題。你要用簡明扼要與友善的方式來回答客戶的問題。以下是所提供的中醫客服資料庫：

@@ -181,14 +181,14 @@ elif demo_knowledge_Database == 'TA助教機器人' and st.session_state.isLoade
     st.session_state.isLoadedTradingStrategy = False 
     st.session_state.isLoadedChineseMedicine = False 	
     st.session_state.isLoadedTA = True 		
-elif demo_knowledge_Database == 'PCBA紅墨水試驗' and st.session_state.isLoadedTA == False:
-    session_state.knowledge_Database = 'PCBA紅墨水試驗'
-    knowledge_Database.LoadPCBA('')
+elif demo_knowledge_Database == 'PCBA紅墨水試驗' and st.session_state.isLoadedPCBA == False: #need change both!!
+    session_state.knowledge_Database = 'PCBA紅墨水試驗' #need change
+    knowledge_Database.LoadPCBA('') #need change
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = False 
     st.session_state.isLoadedChineseMedicine = False 	
     st.session_state.isLoadedTA = False 	
-    st.session_state.isLoadPCBA = True 	#need initialize!!
+    st.session_state.isLoadedPCBA = True 	#need initialize!!
 	
 ### 2. Select a question to ask knowledge Database
 ## step-3. add entries to Select a question to ask knowledgeBase (發問)

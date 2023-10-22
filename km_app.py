@@ -67,7 +67,9 @@ if 'isLoadedChineseMedicine' not in st.session_state:
     st.session_state.isLoadedChineseMedicine = False
 if 'isLoadedTA' not in st.session_state:
     st.session_state.isLoadedTA = False
-	
+if 'isLoadedPCBA' not in st.session_state:
+    st.session_state.isLoadedPCBA = False
+
 if 'isOpenAiAPIError' not in st.session_state:
     st.session_state.isOpenAiAPIError = False
 if 'isOpenAiAPIErrorEver' not in st.session_state:
@@ -146,7 +148,7 @@ if prompt := st.chat_input(disabled=not api_key):
 # Trading Strategy: need login to protect trade secret !! others: don't need to login
 demo_knowledge_Database = st.sidebar.selectbox( 
     '1. Select a Knowledge Database (選擇知識庫)',
-    ('None', 'Pizza Resturant', 'Trading Strategy', '中醫客服機器人', 'TA助教機器人'))
+    ('None', 'Pizza Resturant', 'Trading Strategy', '中醫客服機器人', 'TA助教機器人', 'PCBA紅墨水試驗'))
 ## Launch chat using different knowledge Database, ### DO ONLY ONCE !!! initialize the demo knowledge Database
 if not session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':				     
     st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more functionalities!")
@@ -179,6 +181,14 @@ elif demo_knowledge_Database == 'TA助教機器人' and st.session_state.isLoade
     st.session_state.isLoadedTradingStrategy = False 
     st.session_state.isLoadedChineseMedicine = False 	
     st.session_state.isLoadedTA = True 		
+elif demo_knowledge_Database == 'PCBA紅墨水試驗' and st.session_state.isLoadedTA == False:
+    session_state.knowledge_Database = 'PCBA紅墨水試驗'
+    knowledge_Database.LoadPCBA('')
+    st.session_state.isLoadedPizzaResturant = False
+    st.session_state.isLoadedTradingStrategy = False 
+    st.session_state.isLoadedChineseMedicine = False 	
+    st.session_state.isLoadedTA = False 	
+    st.session_state.isLoadPCBA = True 	#need initialize!!
 	
 ### 2. Select a question to ask knowledge Database
 ## step-3. add entries to Select a question to ask knowledgeBase (發問)

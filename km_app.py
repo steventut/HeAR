@@ -212,6 +212,10 @@ if demo_knowledge_Database == 'TA助教機器人':
     question = st.sidebar.selectbox( 
     '2. Select a question to ask knowledgeBase (發問)',
     ('None', '請問課程簡介', '請問學期成績計算方式', '請問老師會當人嗎?', '老師會帶我們參加比賽嗎?', 'Ask your own question!'))
+if demo_knowledge_Database == 'PCBA紅墨水試驗':
+    question = st.sidebar.selectbox( 
+    '2. Select a question to ask knowledgeBase (發問)',
+    ('None', '紅墨水試驗的主要目的是什麼？', '紅墨水試驗是一種什麼類型的試驗？', '紅墨水試驗的原理是什麼？', '紅墨水試驗的步驟有哪些？', '如何判斷紅墨水試驗的結果？', 'Ask your own question!'))
 
 # ask a question by Selecting a question to ask knowledge Database
 #st.write(prompt)

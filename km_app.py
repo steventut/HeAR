@@ -3,7 +3,7 @@
 ## 1. add knowledge to knowledge_database
 ## step-2. add an entry to Select a Knowledge Database (選擇知識庫)
 ## step-3. add entries to Select a question to ask knowledgeBase (發問)
-## step-3. add codes to knowledge_Database
+## step-3. add codes to knowledge_Database.py
 
 import streamlit as st
 #from hugchat import hugchat

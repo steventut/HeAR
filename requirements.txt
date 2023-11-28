@@ -1,5 +1,7 @@
 streamlit
-openai
+#11/28/2023 debugginh...
+#openai
+openai==0.28
 hugchat==0.2.0
 #hugchat==0.1.0
 #langchain

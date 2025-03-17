@@ -256,6 +256,7 @@ if prompt is None and demo_knowledge_Database != 'None' and question != 'None' a
     #if st.session_state.isOpenAiAPIError == False and st.session_state.isOpenAiAPIErrorEver == True:
     #    time.sleep(10) # Sleep for 3 seconds
     knowledge_Database.collect_messages(question)
+    question = ''
 
 ### SOS
 #assistant_reply = str(st.session_state.messages[-1]["content"])

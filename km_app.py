@@ -122,6 +122,7 @@ elif choice == "Logout":
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = False
     st.session_state.isLoadedChineseMedicine = False	
+    st.session_state.isLoadedAIagent = False
 
 ### MAIN CODES
 # Display chat messages
@@ -148,7 +149,7 @@ if prompt := st.chat_input(disabled=not api_key):
 # Trading Strategy: need login to protect trade secret !! others: don't need to login
 demo_knowledge_Database = st.sidebar.selectbox( 
     '1. Select a Knowledge Database (選擇知識庫)',
-    ('None', 'Pizza Resturant', 'Trading Strategy', '中醫客服機器人', 'TA助教機器人', 'PCBA紅墨水試驗'))
+    ('None', 'Pizza Resturant', 'Trading Strategy', '中醫客服機器人', 'TA助教機器人', 'PCBA紅墨水試驗', 'RPA+AI agent解決品質異常問題'))
 ## Launch chat using different knowledge Database, ### DO ONLY ONCE !!! initialize the demo knowledge Database
 if not session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':				     
     st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more functionalities!")
@@ -159,7 +160,8 @@ if demo_knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPiz
     st.session_state.isLoadedPizzaResturant = True
     st.session_state.isLoadedTradingStrategy = False
     st.session_state.isLoadedChineseMedicine = False	
-    st.session_state.isLoadedTA = False 		
+    st.session_state.isLoadedTA = False
+    st.session_state.isLoadedAIagent = False 		
 elif session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy' and st.session_state.isLoadedTradingStrategy == False:
     session_state.knowledge_Database = 'Trading Strategy'
     knowledge_Database.LoadTradingStrategy('')
@@ -167,6 +169,7 @@ elif session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy' 
     st.session_state.isLoadedTradingStrategy = True 
     st.session_state.isLoadedChineseMedicine = False	
     st.session_state.isLoadedTA = False
+    st.session_state.isLoadedAIagent = False
 elif demo_knowledge_Database == '中醫客服機器人' and st.session_state.isLoadedChineseMedicine == False:
     session_state.knowledge_Database = '中醫客服機器人'
     knowledge_Database.LoadTChineseMedicine('')
@@ -174,13 +177,15 @@ elif demo_knowledge_Database == '中醫客服機器人' and st.session_state.isL
     st.session_state.isLoadedTradingStrategy = False 
     st.session_state.isLoadedChineseMedicine = True 
     st.session_state.isLoadedTA = False
+    st.session_state.isLoadedAIagent = False
 elif demo_knowledge_Database == 'TA助教機器人' and st.session_state.isLoadedTA == False:
     session_state.knowledge_Database = 'TA助教機器人'
     knowledge_Database.LoadTA('')
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = False 
     st.session_state.isLoadedChineseMedicine = False 	
-    st.session_state.isLoadedTA = True 		
+    st.session_state.isLoadedTA = True 	
+    st.session_state.isLoadedAIagent = False 	    	
 elif demo_knowledge_Database == 'PCBA紅墨水試驗' and st.session_state.isLoadedPCBA == False: #need change both!!
     session_state.knowledge_Database = 'PCBA紅墨水試驗' #need change
     knowledge_Database.LoadPCBA('') #need change
@@ -188,8 +193,17 @@ elif demo_knowledge_Database == 'PCBA紅墨水試驗' and st.session_state.isLoa
     st.session_state.isLoadedTradingStrategy = False 
     st.session_state.isLoadedChineseMedicine = False 	
     st.session_state.isLoadedTA = False 	
-    st.session_state.isLoadedPCBA = True 	#need initialize!!
-	
+    st.session_state.isLoadedPCBA = True 	#need initialize!!	
+    st.session_state.isLoadedAIagent = False    
+elif demo_knowledge_Database == 'RPA+AI agent解決品質異常問題' and st.session_state.isLoadedAIagent == False: #need change both!!
+    session_state.knowledge_Database = 'RPA+AI agent解決品質異常問題' #need change
+    knowledge_Database.LoadAIagent('') #need change
+    st.session_state.isLoadedPizzaResturant = False
+    st.session_state.isLoadedTradingStrategy = False 
+    st.session_state.isLoadedChineseMedicine = False 	
+    st.session_state.isLoadedTA = False 	
+    st.session_state.isLoadedPCBA = False
+    st.session_state.isLoadedAIagent = True 	#need initialize!!    
 ### 2. Select a question to ask knowledge Database
 ## step-3. add entries to Select a question to ask knowledgeBase (發問)
 if demo_knowledge_Database == 'None':

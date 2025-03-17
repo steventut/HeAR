@@ -134,7 +134,7 @@ for message in st.session_state.messages:
         st.write(message["content"])
 
 # Upload file buttom
-uploaded_file = st.file_uploader("Upload a file")
+uploaded_file = st.file_uploader("")
 if uploaded_file:
    st.write("Filename: ", uploaded_file.name)
 

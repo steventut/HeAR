@@ -135,15 +135,14 @@ for message in st.session_state.messages:
 
 # Upload file buttom session_state.knowledge_Database
 #if demo_knowledge_Database == 'RPA+AI agent解決品質異常問題':
-if session_state.knowledge_Database == 'RPA+AI agent解決品質異常問題':
-	uploaded_file = st.file_uploader("")
-	if uploaded_file:
-   		#st.write("Filename: ", uploaded_file.name)
-		question = 'Log file: ' + uploaded_file.name + ' uploaded!'
-		st.session_state.messages.append({"role": "user", "content": question})
-		with st.chat_message("user"):
-			st.write(question)
-		knowledge_Database.collect_messages(question)
+uploaded_file = st.file_uploader("")
+if uploaded_file:
+   	#st.write("Filename: ", uploaded_file.name)
+	question = 'Log file: ' + uploaded_file.name + ' uploaded!'
+	st.session_state.messages.append({"role": "user", "content": question})
+	with st.chat_message("user"):
+		st.write(question)
+	knowledge_Database.collect_messages(question)
 
 # User-provided prompt
 #if session_state.knowledge_Database != 'Pizza Resturant':

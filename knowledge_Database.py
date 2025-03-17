@@ -92,7 +92,7 @@ def LoadPCBA(prompt):
     collect_messages('')
 
 def LoadAIagent(prompt):
-    sheet_name = 'RPA+AI agent' #Change sheet name:
+    sheet_name = 'RPAAIagent' #Change sheet name:
     sheet_id = '1VBtBQw8-Ch02dVp1p7xTERybGI9DCOVbqywj013Ldsc' #1VBtBQw8-Ch02dVp1p7xTERybGI9DCOVbqywj013Ldsc
     url = f'https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
     df=pd.read_csv(url)

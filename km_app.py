@@ -133,6 +133,11 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
 
+# Upload file buttom
+uploaded_file = st.file_uploader("Upload a file")
+if uploaded_file:
+   st.write("Filename: ", uploaded_file.name)
+
 # User-provided prompt
 #if session_state.knowledge_Database != 'Pizza Resturant':
 prompt = ''

@@ -1,6 +1,7 @@
 ### Revision history
 ## version 1.1 steps to add a new knowledge database
-## 1. add knowledge to knowledge_database
+## version 1.2 add a new knowledge database: RPA+AI agent解決品質異常問題
+## step 1. add knowledge to knowledge_database
 ## step-2. add an entry to Select a Knowledge Database (選擇知識庫)
 ## step-3. add entries to Select a question to ask knowledgeBase (發問)
 ## step-3. add codes to knowledge_Database.py
@@ -230,7 +231,11 @@ if demo_knowledge_Database == 'PCBA紅墨水試驗':
     question = st.sidebar.selectbox( 
     '2. Select a question to ask knowledgeBase (發問)',
     ('None', '紅墨水試驗的主要目的是什麼？', '紅墨水試驗是一種什麼類型的試驗？', '紅墨水試驗的原理是什麼？', '紅墨水試驗的步驟有哪些？', '如何判斷紅墨水試驗的結果？', 'Ask your own question!'))
-
+if demo_knowledge_Database == 'RPA+AI agent解決品質異常問題':
+    question = st.sidebar.selectbox( 
+    '2. Select a question to ask knowledgeBase (發問)',
+    ('None',))
+	
 # ask a question by Selecting a question to ask knowledge Database
 #st.write(prompt)
 #st.write(question)

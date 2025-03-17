@@ -240,12 +240,11 @@ if demo_knowledge_Database == 'PCBA紅墨水試驗':
 if demo_knowledge_Database == 'RPA+AI agent解決品質異常問題':
     question = st.sidebar.selectbox( 
     '2. Select a question to ask knowledgeBase (發問)',
-    ('上傳機台Log file',))
+    ('None',))
 
-if question == '上傳機台Log file':
-    uploaded_file = st.file_uploader("")
-    if uploaded_file:
-       question = 'Log file: ' + uploaded_file.name + ' uploaded!'
+uploaded_file = st.file_uploader("")
+if uploaded_file:
+    question = 'Log file: ' + uploaded_file.name + ' uploaded!'
 
 # ask a question by Selecting a question to ask knowledge Database
 #st.write(prompt)

@@ -133,8 +133,9 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
 
-# Upload file buttom
-if demo_knowledge_Database == 'RPA+AI agent解決品質異常問題':
+# Upload file buttom session_state.knowledge_Database
+#if demo_knowledge_Database == 'RPA+AI agent解決品質異常問題':
+if session_state.knowledge_Database == 'RPA+AI agent解決品質異常問題':
 	uploaded_file = st.file_uploader("")
 	if uploaded_file:
    		#st.write("Filename: ", uploaded_file.name)

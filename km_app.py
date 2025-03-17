@@ -70,6 +70,8 @@ if 'isLoadedTA' not in st.session_state:
     st.session_state.isLoadedTA = False
 if 'isLoadedPCBA' not in st.session_state:
     st.session_state.isLoadedPCBA = False
+if 'isLoadedAIagent' not in st.session_state:
+    st.session_state.isLoadedAIagent = False
 
 if 'isOpenAiAPIError' not in st.session_state:
     st.session_state.isOpenAiAPIError = False

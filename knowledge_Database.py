@@ -5,7 +5,7 @@ import time
 
 ### Initialize openai Credentials
 openai.api_key = st.secrets['api']
-pause_second = st.secrets['pause']
+pause_second = int(st.secrets['pause'])
 #context = []
 
 def get_completion_from_messages(messages, model="gpt-4o-mini", temperature=0):

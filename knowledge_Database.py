@@ -38,6 +38,7 @@ def collect_messages(prompt):
             response = get_completion_from_messages(st.session_state.messages2)
             #st.write(prompt) #for debugging...
             st.write(response) 
+            time.sleep(20)  # 每次間隔 20 秒，避免超過每分鐘 3 次。5/7/2025 modified!
         message = {"role": "assistant", "content": response}
         st.session_state.messages.append(message)            
         st.session_state.messages2.append(message)                    

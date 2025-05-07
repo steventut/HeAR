@@ -1,6 +1,7 @@
 import openai #9/22/2023     
 import streamlit as st
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import time
 
 ### Initialize openai Credentials
 openai.api_key = st.secrets['api']

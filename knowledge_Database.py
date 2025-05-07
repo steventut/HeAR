@@ -5,6 +5,7 @@ import time
 
 ### Initialize openai Credentials
 openai.api_key = st.secrets['api']
+pause_second = st.secrets['pause']
 #context = []
 
 def get_completion_from_messages(messages, model="gpt-4o-mini", temperature=0):
@@ -39,7 +40,8 @@ def collect_messages(prompt):
             response = get_completion_from_messages(st.session_state.messages2)
             #st.write(prompt) #for debugging...
             st.write(response) 
-            time.sleep(20)  # 每次間隔 20 秒，避免超過每分鐘 3 次。5/7/2025 modified!
+            #time.sleep(20)  # 每次間隔 20 秒，避免超過每分鐘 3 次。5/7/2025 modified!
+            time.sleep(pause_second)  # 每次間隔 20 秒，避免超過每分鐘 3 次。5/7/2025 modified!
         message = {"role": "assistant", "content": response}
         st.session_state.messages.append(message)            
         st.session_state.messages2.append(message)                    

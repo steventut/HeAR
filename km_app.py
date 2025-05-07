@@ -5,6 +5,7 @@
 ## step-2. add an entry to Select a Knowledge Database (選擇知識庫)
 ## step-3. add entries to Select a question to ask knowledgeBase (發問)
 ## step-3. add codes to knowledge_Database.py
+## version 1.3 add: time.sleep(20) to knowledge_Database.py  # 每次間隔 20 秒，避免超過每分鐘 3 次。5/7/2025 modified!
 
 import streamlit as st
 #from hugchat import hugchat

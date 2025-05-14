@@ -41,7 +41,7 @@ def collect_messages(prompt):
             #st.write(prompt) #for debugging...
             st.write(response) 
             #time.sleep(20)  # 每次間隔 20 秒，避免超過每分鐘 3 次。5/7/2025 modified!
-            time.sleep(pause_second)  # 每次間隔 20 秒，避免超過每分鐘 3 次。5/7/2025 modified!
+            #time.sleep(pause_second)  # 每次間隔 20 秒，避免超過每分鐘 3 次。5/7/2025 modified!, 5/15/2025 comment out! I use $5 pay plan
         message = {"role": "assistant", "content": response}
         st.session_state.messages.append(message)            
         st.session_state.messages2.append(message)                    

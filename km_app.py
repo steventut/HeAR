@@ -144,6 +144,20 @@ def load_data():
     pd_vectors_back = pd.read_csv("pd_vectors.csv")
     pd_vectors = pd_vectors_back.values.tolist()
 
+    # Demo 1: show baseline model (no new patient)
+    # --- 5. GENERATE PLOT 1: UPDATED PCA MAP ---
+    all_vectors = [golden_vector] + healthy_vectors + pd_vectors
+    #all_vectors = [golden_vector] + healthy_vectors + pd_vectors + new_vecs
+    pca = PCA(n_components=2)
+    all_2d = pca.fit_transform(np.array(all_vectors))
+
+    gold_2d = all_2d[0]
+    healthy_2d = all_2d[1:len(healthy_vectors)+1]
+    #pd_2d = all_2d[len(healthy_vectors)+1:-1]
+    pd_2d = all_2d[1+len(healthy_vectors)+1:1+len(healthy_vectors)+1+len(pd_vectors)]
+    new_2d = []
+    #new_2d = all_2d[-len(new_vecs):]
+
 menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History"]
 choice_menu = st.sidebar.radio("Menu", menu_functions)
 if choice_menu == "Product Description":

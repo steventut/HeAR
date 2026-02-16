@@ -201,14 +201,14 @@ def load_data():
     ##from IPython.display import display
 
     # 1. Combine all variables into a single dictionary, then create a DataFrame
-    '''data = {
-        'Label': new_labels,
-        'Distance from Golden Vector': new_distances,
-        'Jitter': new_jitters,
-        'Shimmer': new_shimmers,
-        'Predicted motor_UPDRS': new_updrs_scores
-    }
-    df_new = pd.DataFrame(data)'''
+    ##data = {
+    ##    'Label': new_labels,
+    ##    'Distance from Golden Vector': new_distances,
+    ##    'Jitter': new_jitters,
+    ##    'Shimmer': new_shimmers,
+    ##    'Predicted motor_UPDRS': new_updrs_scores
+    ##}
+    ##df_new = pd.DataFrame(data)
 
     # Load the data back from the CSV file into a new variable
     df_sorted = pd.read_csv("data_for_4_plots.csv")
@@ -245,6 +245,57 @@ def load_data():
     plt.tight_layout()
 
     # Show the merged plot
+    plt.show()
+    st.pyplot()
+
+    ### 
+    # Cell 13: Main Program: Progression Monitoring Dashboard (3): 
+    # 3 plots: AI distance, Jitter, Shimmer
+    ## fig, axes = plt.subplots(2, 1, figsize=(14, 20))
+    fig, axes = plt.subplots(3, 1, figsize=(14, 10))
+
+    # --- Plot 1: Distance from Golden Vector ---
+    axes[0].plot(df_sorted.index, df_sorted['Distance from Golden Vector'], marker='o', color='blue', linewidth=2)
+    axes[0].set_title('Overall Recovery: Distance from Golden Vector (google/HeAR)', fontsize=14)
+    axes[0].set_ylabel('Distance')
+    axes[0].axhline(y=30, color='green', linestyle='--', linewidth=2, label='Healthy Threshold')
+    axes[0].legend(loc='center')
+
+    # --- Plot 2: Frequency Instability (Jitter) ---
+    axes[1].plot(df_sorted.index, df_sorted['Jitter'], marker='s', color='orange', linewidth=2)
+    axes[1].set_title('Frequency Instability (Jitter)', fontsize=14)
+    axes[1].set_ylabel('Jitter')
+    axes[1].axhline(y=0.8, color='green', linestyle='--', linewidth=2, label='Healthy Threshold')
+    axes[1].legend(loc='center')
+
+    # --- Plot 3: Amplitude Instability (Shimmer) ---
+    axes[2].plot(df_sorted.index, df_sorted['Shimmer'], marker='^', color='green', linewidth=2)
+    axes[2].set_title('Amplitude Instability (Shimmer)', fontsize=14)
+    axes[2].set_ylabel('Shimmer')
+    axes[2].axhline(y=3, color='green', linestyle='--', linewidth=2, label='Healthy Threshold')
+    axes[2].legend(loc='center')
+
+    # --- Plot 4: Predicted motor_UPDRS ---
+    ##axes[3].plot(df_sorted.index, df_sorted['Predicted motor_UPDRS'], marker='x', color='red', linewidth=2)
+    ##axes[3].set_title('Predicted motor_UPDRS', fontsize=14)
+    ##axes[3].set_ylabel('UPDRS Score')
+    ##axes[3].set_xlabel('Patient/Sample Labels', fontsize=14)
+
+    # Apply unified formatting to all 4 subplots
+    axes[0].grid(True, linestyle='--', alpha=0.7)
+    axes[1].grid(True, linestyle='--', alpha=0.7)
+    axes[2].grid(True, linestyle='--', alpha=0.7)
+    # Ensure X-axis shows the sorted labels properly
+    axes[0].set_xticks(ticks=df_sorted.index)
+    axes[1].set_xticks(ticks=df_sorted.index)
+    axes[2].set_xticklabels(labels='', rotation=45, ha='right')
+    axes[2].set_xticks(ticks=df_sorted.index)
+    axes[2].set_xticklabels(labels=df_sorted['Label'], rotation=45, ha='right')
+
+    # Adjust layout to prevent overlapping labels and titles
+    plt.tight_layout()
+
+    # Render the 3 distinct plots
     plt.show()
     st.pyplot()
 

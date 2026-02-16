@@ -299,7 +299,7 @@ def load_data():
     plt.show()
     st.pyplot()
 
-menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History"]
+menu_functions = ["Product Description", "Baseline Model","Ahh: Capturing Voice Biomarker", "Monitoring History"]
 choice_menu = st.sidebar.radio("Menu", menu_functions)
 if choice_menu == "Product Description":
     st.title("Prodcut Description")

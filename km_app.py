@@ -124,6 +124,6 @@ elif choice == "Logout":
     st.session_state.isLoadedAIagent = False
 
 ##### HeAR added!
-menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History]
+menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History"]
 choice = st.sidebar.radio("Menu", menu_functions)
 

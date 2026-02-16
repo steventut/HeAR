@@ -125,5 +125,10 @@ elif choice == "Logout":
 
 ##### HeAR added!
 menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History"]
-choice = st.sidebar.radio("Menu", menu_functions)
-
+choice_menu = st.sidebar.radio("Menu", menu_functions)
+if choice_menu == "Product Description":
+    st.title("Prodcut Description")
+    st.markdown("### Parkinson Disease Progression Monitoring System using Voice Biomarker（google/HeAR）")
+else if choice_menu == "Baseline Model":
+	st.title("Baseline Model")
+    st.markdown("### Clustering Voice Biomarker for both Healthy People and Parkinson Patients")

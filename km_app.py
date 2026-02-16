@@ -124,6 +124,11 @@ elif choice == "Logout":
     st.session_state.isLoadedAIagent = False
 
 ##### HeAR added!
+st.set_page_config(
+    page_title="Parkinson Disease Progression Monitoring System",
+    page_icon="🐕",
+    layout="wide"
+)
 menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History"]
 choice_menu = st.sidebar.radio("Menu", menu_functions)
 if choice_menu == "Product Description":

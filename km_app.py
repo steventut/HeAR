@@ -201,19 +201,19 @@ def load_data():
     ##from IPython.display import display
 
     # 1. Combine all variables into a single dictionary, then create a DataFrame
-    data = {
+    '''data = {
         'Label': new_labels,
         'Distance from Golden Vector': new_distances,
         'Jitter': new_jitters,
         'Shimmer': new_shimmers,
         'Predicted motor_UPDRS': new_updrs_scores
     }
-    df_new = pd.DataFrame(data)
+    df_new = pd.DataFrame(data)'''
 
     # Load the data back from the CSV file into a new variable
     df_sorted = pd.read_csv("data_for_4_plots.csv")
-    df_sorted = pd.concat([df_sorted, df_new], ignore_index=True)
-    print(df_sorted)
+    ##df_sorted = pd.concat([df_sorted, df_new], ignore_index=True)
+    ##print(df_sorted)
 
     ##print("Successfully loaded 'data_for_4_plots.csv' into df_sorted_back:")
     ## Display the first few rows to verify it loaded correctly

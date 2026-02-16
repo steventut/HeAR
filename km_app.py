@@ -193,6 +193,7 @@ def load_data():
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
     plt.show()
+	st.pyplot()
 
 menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History"]
 choice_menu = st.sidebar.radio("Menu", menu_functions)

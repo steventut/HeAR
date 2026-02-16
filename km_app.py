@@ -1,11 +1,5 @@
 ### Revision history
-## version 1.1 steps to add a new knowledge database
-## version 1.2 add a new knowledge database: RPA+AI agent解決品質異常問題
-## step 1. add knowledge to knowledge_database
-## step-2. add an entry to Select a Knowledge Database (選擇知識庫)
-## step-3. add entries to Select a question to ask knowledgeBase (發問)
-## step-3. add codes to knowledge_Database.py
-## version 1.3 add: time.sleep(20) to knowledge_Database.py  # 每次間隔 20 秒，避免超過每分鐘 3 次。5/7/2025 modified!
+## version 1.0 Initial development for google/HeAR app for PD progression Monitoring
 
 import streamlit as st
 #from hugchat import hugchat
@@ -18,8 +12,8 @@ import time
 ### Initialize Hugging Face Credentials
 with st.sidebar:
     ##st.title('🤗💬 HugChat')
-    st.title('企業智識庫機器人')
-    st.write('v1.3')
+    st.title('Parkinson Disease Progression Monitoring using Voice Biomarker')
+    st.write('v1.0')
     #if ('EMAIL' in st.secrets) and ('PASS' in st.secrets):
     if 'api' in st.secrets:
         ##st.success('HuggingFace Login credentials already provided!', icon='✅')
@@ -129,149 +123,7 @@ elif choice == "Logout":
     st.session_state.isLoadedChineseMedicine = False	
     st.session_state.isLoadedAIagent = False
 
-### MAIN CODES
-# Display chat messages
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.write(message["content"])
+##### HeAR added!
+menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History]
+choice = st.sidebar.radio("Menu", menu_functions)
 
-# Upload file buttom session_state.knowledge_Database
-#if demo_knowledge_Database == 'RPA+AI agent解決品質異常問題':
-
-# User-provided prompt
-#if session_state.knowledge_Database != 'Pizza Resturant':
-prompt = ''
-if prompt := st.chat_input(disabled=not api_key):
-#if prompt := st.chat_input(prompt): 
-#prompt = st.chat_input(disabled=not api_key)
-    if prompt != '':
-        st.session_state.messages.append({"role": "user", "content": prompt})
-        with st.chat_message("user"):
-            st.write(prompt)
-        #if st.session_state.isOpenAiAPIError == False and st.session_state.isOpenAiAPIErrorEver == True:
-        #    time.sleep(10) # Sleep for 3 seconds	
-        knowledge_Database.collect_messages(prompt)
-
-### 1. Select a demo knowledge Database
-## step-2. add an entry to Select a Knowledge Database (選擇知識庫)
-# Trading Strategy: need login to protect trade secret !! others: don't need to login
-demo_knowledge_Database = st.sidebar.selectbox( 
-    '1. Select a Knowledge Database (選擇知識庫)',
-    ('None', 'Pizza Resturant', 'Trading Strategy', '中醫客服機器人', 'TA助教機器人', 'PCBA紅墨水試驗', 'RPA+AI agent解決品質異常問題'))
-## Launch chat using different knowledge Database, ### DO ONLY ONCE !!! initialize the demo knowledge Database
-if not session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy':				     
-    st.info("You need to login to access this function! Login or click SignUp in the left panel for free and get more functionalities!")
-
-if demo_knowledge_Database == 'Pizza Resturant' and st.session_state.isLoadedPizzaResturant == False:
-    session_state.knowledge_Database = 'Pizza Resturant'
-    knowledge_Database.LoadPizzaResturant('')
-    st.session_state.isLoadedPizzaResturant = True
-    st.session_state.isLoadedTradingStrategy = False
-    st.session_state.isLoadedChineseMedicine = False	
-    st.session_state.isLoadedTA = False
-    st.session_state.isLoadedAIagent = False 		
-elif session_state.isLoggedIn and demo_knowledge_Database == 'Trading Strategy' and st.session_state.isLoadedTradingStrategy == False:
-    session_state.knowledge_Database = 'Trading Strategy'
-    knowledge_Database.LoadTradingStrategy('')
-    st.session_state.isLoadedPizzaResturant = False
-    st.session_state.isLoadedTradingStrategy = True 
-    st.session_state.isLoadedChineseMedicine = False	
-    st.session_state.isLoadedTA = False
-    st.session_state.isLoadedAIagent = False
-elif demo_knowledge_Database == '中醫客服機器人' and st.session_state.isLoadedChineseMedicine == False:
-    session_state.knowledge_Database = '中醫客服機器人'
-    knowledge_Database.LoadTChineseMedicine('')
-    st.session_state.isLoadedPizzaResturant = False
-    st.session_state.isLoadedTradingStrategy = False 
-    st.session_state.isLoadedChineseMedicine = True 
-    st.session_state.isLoadedTA = False
-    st.session_state.isLoadedAIagent = False
-elif demo_knowledge_Database == 'TA助教機器人' and st.session_state.isLoadedTA == False:
-    session_state.knowledge_Database = 'TA助教機器人'
-    knowledge_Database.LoadTA('')
-    st.session_state.isLoadedPizzaResturant = False
-    st.session_state.isLoadedTradingStrategy = False 
-    st.session_state.isLoadedChineseMedicine = False 	
-    st.session_state.isLoadedTA = True 	
-    st.session_state.isLoadedAIagent = False 	    	
-elif demo_knowledge_Database == 'PCBA紅墨水試驗' and st.session_state.isLoadedPCBA == False: #need change both!!
-    session_state.knowledge_Database = 'PCBA紅墨水試驗' #need change
-    knowledge_Database.LoadPCBA('') #need change
-    st.session_state.isLoadedPizzaResturant = False
-    st.session_state.isLoadedTradingStrategy = False 
-    st.session_state.isLoadedChineseMedicine = False 	
-    st.session_state.isLoadedTA = False 	
-    st.session_state.isLoadedPCBA = True 	#need initialize!!	
-    st.session_state.isLoadedAIagent = False    
-elif demo_knowledge_Database == 'RPA+AI agent解決品質異常問題' and st.session_state.isLoadedAIagent == False: #need change both!!
-    session_state.knowledge_Database = 'RPA+AI agent解決品質異常問題' #need change
-    knowledge_Database.LoadAIagent('') #need change
-    st.session_state.isLoadedPizzaResturant = False
-    st.session_state.isLoadedTradingStrategy = False 
-    st.session_state.isLoadedChineseMedicine = False 	
-    st.session_state.isLoadedTA = False 	
-    st.session_state.isLoadedPCBA = False
-    st.session_state.isLoadedAIagent = True 	#need initialize!!    
-	
-### 2. Select a question to ask knowledge Database
-## step-3. add entries to Select a question to ask knowledgeBase (發問)
-if demo_knowledge_Database == 'None':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledgeBase (發問)',
-    ('None',))
-if demo_knowledge_Database == 'Trading Strategy':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledgeBase (發問)',
-    ('None', 'Can you create a new strategy based on these models?', 'List all models.', 'Create one more new model.', 'Ask your own question!'))
-if demo_knowledge_Database == 'Pizza Resturant':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledgeBase (發問)',
-    ('None', 'I would like to order a pizza.', 'Pepperoni Large', 'no topping, but give me small coke!', 'List the detail of the order and total amount', 'Ask your own question!'))
-if demo_knowledge_Database == '中醫客服機器人':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledgeBase (發問)',
-    ('None', '請問星期日有看診嗎', '請問陳國揚醫師星期一有沒有看診', '請問張維量醫師門診時間', 'Ask your own question!'))
-if demo_knowledge_Database == 'TA助教機器人':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledgeBase (發問)',
-    ('None', '請問課程簡介', '請問學期成績計算方式', '請問老師會當人嗎?', '老師會帶我們參加比賽嗎?', 'Ask your own question!'))
-if demo_knowledge_Database == 'PCBA紅墨水試驗':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledgeBase (發問)',
-    ('None', '紅墨水試驗的主要目的是什麼？', '紅墨水試驗是一種什麼類型的試驗？', '紅墨水試驗的原理是什麼？', '紅墨水試驗的步驟有哪些？', '如何判斷紅墨水試驗的結果？', 'Ask your own question!'))
-if demo_knowledge_Database == 'RPA+AI agent解決品質異常問題':
-    question = st.sidebar.selectbox( 
-    '2. Select a question to ask knowledgeBase (發問)',
-    ('None',))
-
-uploaded_file = st.file_uploader("")
-if uploaded_file:
-    question = 'Log file: ' + uploaded_file.name + ' uploaded!'
-
-# ask a question by Selecting a question to ask knowledge Database
-#st.write(prompt)
-#st.write(question)
-if prompt is None and demo_knowledge_Database != 'None' and question != 'None' and question != 'Ask your own question!':
-    st.session_state.messages.append({"role": "user", "content": question})
-    with st.chat_message("user"):
-        st.write(question)	
-    #if st.session_state.isOpenAiAPIError == False and st.session_state.isOpenAiAPIErrorEver == True:
-    #    time.sleep(10) # Sleep for 3 seconds
-    knowledge_Database.collect_messages(question)
-    question = 'None'
-    uploaded_file = False
-
-### SOS
-#assistant_reply = str(st.session_state.messages[-1]["content"])
-#if assistant_reply.find('RateLimitError') != -1: #find it, load knowledge database again => send SYSTEM message
-if st.session_state.isOpenAiAPIError == True and st.session_state.isOpenAiAPIErrorEver == True:
-    if st.button("Restart"):
-        st.rerun()
-    #time.sleep(60) # Sleep for 60 seconds and 
-    #st.write('智識庫機器人忙碌中，請稍後。。。')
-#    if demo_knowledge_Database == 'Pizza Resturant':
-#        knowledge_Database.LoadPizzaResturant('')
-#    elif demo_knowledge_Database == 'Trading Strategy':
-#        knowledge_Database.LoadTradingStrategy('')	
-#    elif demo_knowledge_Database == '中醫客服機器人':
-#        knowledge_Database.LoadTChineseMedicine('')

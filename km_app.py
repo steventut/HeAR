@@ -10,6 +10,8 @@ import knowledge_Database #9/22/2023
 import time
 import pandas as pd
 import numpy as np
+from scipy.spatial.distance import euclidean
+from datetime import datetime
 #import matplotlib.pyplot as plt
 
 ### Initialize Hugging Face Credentials

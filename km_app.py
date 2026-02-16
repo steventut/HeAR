@@ -126,7 +126,7 @@ elif choice == "Logout":
 ##### HeAR added!
 st.set_page_config(
     page_title="Parkinson Disease Progression Monitoring System",
-    page_icon="🐕",
+    #page_icon="🐕",
     layout="wide"
 )
 menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History"]

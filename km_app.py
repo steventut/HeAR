@@ -129,6 +129,6 @@ choice_menu = st.sidebar.radio("Menu", menu_functions)
 if choice_menu == "Product Description":
     st.title("Prodcut Description")
     st.markdown("### Parkinson Disease Progression Monitoring System using Voice Biomarker（google/HeAR）")
-elseif choice_menu == "Baseline Model":
+elif choice_menu == "Baseline Model":
 	st.title("Baseline Model")
     st.markdown("### Clustering Voice Biomarker for both Healthy People and Parkinson Patients")

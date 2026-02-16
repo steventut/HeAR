@@ -195,6 +195,59 @@ def load_data():
     plt.show()
     st.pyplot()
 
+    ### Main Program: Progression Monitoring Dashboard (2)
+    # Cell 12: Main Program: Progression Monitoring Dashboard (2): 
+    # 4 plots in one graph: AI distance, Jitter, Shimmer, moor_UPDRS score
+    from IPython.display import display
+
+    # 1. Combine all variables into a single dictionary, then create a DataFrame
+    data = {
+        'Label': new_labels,
+        'Distance from Golden Vector': new_distances,
+        'Jitter': new_jitters,
+        'Shimmer': new_shimmers,
+        'Predicted motor_UPDRS': new_updrs_scores
+    }
+    df_new = pd.DataFrame(data)
+
+    # Load the data back from the CSV file into a new variable
+    df_sorted = pd.read_csv("data_for_4_plots.csv")
+    df_sorted = pd.concat([df_sorted, df_new], ignore_index=True)
+    print(df_sorted)
+
+    ##print("Successfully loaded 'data_for_4_plots.csv' into df_sorted_back:")
+    ## Display the first few rows to verify it loaded correctly
+    ##display(df_sorted)
+
+    # 3. Merge all 4 plots into one single plot
+    plt.figure(figsize=(14, 8))
+
+    # Plot each trend on the same axis
+    plt.plot(df_sorted.index, df_sorted['Distance from Golden Vector'], label='Distance (Overall Recovery)', marker='o', linewidth=2)
+    plt.plot(df_sorted.index, df_sorted['Jitter'], label='Frequency Instability (Jitter)', marker='s', linewidth=2)
+    plt.plot(df_sorted.index, df_sorted['Shimmer'], label='Amplitude Instability (Shimmer)', marker='^', linewidth=2)
+    plt.plot(df_sorted.index, df_sorted['Predicted motor_UPDRS'], label='Predicted motor_UPDRS', marker='x', linewidth=2)
+
+    # Add the two requested dashed horizontal lines
+    plt.axhline(y=30, color='blue', linestyle='--', linewidth=2, label='Healthy Acceptance Level')
+    plt.axhline(y=15, color='brown', linestyle='--', linewidth=2, label='Mild Threshold (<15)')
+
+    # Formatting the plot
+    plt.title('Combined Trends for HeAR Evaluation (Sorted by Distance)', fontsize=16)
+    plt.xlabel('Patient/Sample Labels', fontsize=12)
+    plt.ylabel('Feature Values', fontsize=12)
+
+    # Set the x-ticks to be the actual labels from your data
+    plt.xticks(ticks=df_sorted.index, labels=df_sorted['Label'], rotation=45, ha='right')
+
+    plt.grid(True, linestyle=':', alpha=0.7)
+    plt.legend(fontsize=12, loc='best')
+    plt.tight_layout()
+
+    # Show the merged plot
+    plt.show()
+    st.pyplot()
+
 menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History"]
 choice_menu = st.sidebar.radio("Menu", menu_functions)
 if choice_menu == "Product Description":

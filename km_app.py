@@ -13,7 +13,7 @@ import numpy as np
 from sklearn.decomposition import PCA
 from scipy.spatial.distance import euclidean
 from datetime import datetime
-#import matplotlib.pyplot as plt
+	import matplotlib.pyplot as plt
 
 ### Initialize Hugging Face Credentials
 with st.sidebar:
@@ -158,6 +158,41 @@ def load_data():
     pd_2d = all_2d[1+len(healthy_vectors)+1:1+len(healthy_vectors)+1+len(pd_vectors)]
     new_2d = []
     #new_2d = all_2d[-len(new_vecs):]
+
+    ### Copy codes from Main Program: Progression Monitoring Dashboard (1)
+    # Cell 11: Main Program: Progression Monitoring Dashboard (1): PCA Clustering Map
+    ## Steve: cut it here! The following codes are for plotting Cluster Map!!
+    plt.figure(figsize=(16, 10)) # Made figure slightly larger for labels
+
+    # 1. Background Clusters
+    plt.scatter(healthy_2d[:, 0], healthy_2d[:, 1], c='green', alpha=0.7, s=150, edgecolors='darkgreen', label='Healthy Ref')
+    plt.scatter(pd_2d[:, 0], pd_2d[:, 1], c='red', alpha=0.8, s=150, edgecolors='darkred', label='PD History')
+
+    # 3. Golden Vector
+    plt.scatter(gold_2d[0], gold_2d[1], c='gold', s=700, marker='*', edgecolors='black', linewidth=1.5, zorder=15, label='Target (Golden Vector)')
+
+    # 4. RED ARROWS (PD History -> Gold) (UPDATED)
+    # Using `arrowprops` to draw red arrows pointing to the star
+    for pt in pd_2d:
+        plt.annotate("",
+                 xy=(gold_2d[0], gold_2d[1]), xycoords='data', # Head of arrow (Target)
+                 xytext=(pt[0], pt[1]), textcoords='data',     # Tail of arrow (Source)
+                 arrowprops=dict(arrowstyle="->", color='red', linestyle='--', linewidth=1.5, alpha=0.5))
+
+    # 5. The New Person (Blue Dot)
+    if len(new_2d) != 0:
+        plt.scatter(new_2d[:,0], new_2d[:,1], c='blue', s=400, edgecolors='white', linewidth=3, zorder=20, label='New Input')
+        for i, txt in enumerate(new_labels):
+            plt.annotate(txt, (new_2d[i, 0], new_2d[i, 1]),
+                 xytext=(5, 5), textcoords='offset points', fontsize=8, alpha=0.7, color='darkgreen')
+
+    plt.title("Voice Biomarker Map: Patient Assessment", fontsize=16, weight='bold')
+    plt.xlabel("Principal Component 1 (Vocal Variance)", fontsize=12)
+    plt.ylabel("Principal Component 2 (Tone Quality)", fontsize=12)
+    plt.legend(loc='lower right', fontsize=12)
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.show()
 
 menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History"]
 choice_menu = st.sidebar.radio("Menu", menu_functions)

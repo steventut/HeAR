@@ -7,3 +7,4 @@ hugchat==0.2.0
 #langchain
 scipy
 scikit-learn
+matplotlib

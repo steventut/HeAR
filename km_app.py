@@ -130,7 +130,7 @@ st.set_page_config(
     layout="wide"
 )
 ### Load voice files to generate embedding vectors and calculate AI distance
-def load_data:
+def load_data():
 	healthy_vectors_back = pd.read_csv("healthy_vectors.csv")
 	healthy_vectors = healthy_vectors_back.values.tolist()
 	golden_vector = np.mean(healthy_vectors, axis=0)

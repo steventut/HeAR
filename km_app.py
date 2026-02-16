@@ -198,7 +198,7 @@ def load_data():
     ### Main Program: Progression Monitoring Dashboard (2)
     # Cell 12: Main Program: Progression Monitoring Dashboard (2): 
     # 4 plots in one graph: AI distance, Jitter, Shimmer, moor_UPDRS score
-    from IPython.display import display
+    ##from IPython.display import display
 
     # 1. Combine all variables into a single dictionary, then create a DataFrame
     data = {

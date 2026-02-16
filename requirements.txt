@@ -6,3 +6,4 @@ hugchat==0.2.0
 #hugchat==0.1.0
 #langchain
 scipy
+sklearn

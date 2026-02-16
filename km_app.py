@@ -13,7 +13,7 @@ import numpy as np
 from sklearn.decomposition import PCA
 from scipy.spatial.distance import euclidean
 from datetime import datetime
-	import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 ### Initialize Hugging Face Credentials
 with st.sidebar:

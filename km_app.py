@@ -131,13 +131,13 @@ st.set_page_config(
 )
 ### Load voice files to generate embedding vectors and calculate AI distance
 def load_data():
-	healthy_vectors_back = pd.read_csv("healthy_vectors.csv")
-	healthy_vectors = healthy_vectors_back.values.tolist()
-	golden_vector = np.mean(healthy_vectors, axis=0)
-	avg_healthy_dist = np.mean([euclidean(v, golden_vector) for v in healthy_vectors])
+    healthy_vectors_back = pd.read_csv("healthy_vectors.csv")
+    healthy_vectors = healthy_vectors_back.values.tolist()
+    golden_vector = np.mean(healthy_vectors, axis=0)
+    avg_healthy_dist = np.mean([euclidean(v, golden_vector) for v in healthy_vectors])
 
-	pd_vectors_back = pd.read_csv("pd_vectors.csv")
-	pd_vectors = pd_vectors_back.values.tolist()
+    pd_vectors_back = pd.read_csv("pd_vectors.csv")
+    pd_vectors = pd_vectors_back.values.tolist()
 
 menu_functions = ["Product Description", "Baseline Model","Ahh: Voice Biomarker", "Monitoring History"]
 choice_menu = st.sidebar.radio("Menu", menu_functions)

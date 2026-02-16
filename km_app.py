@@ -8,6 +8,9 @@ import streamlit as st
 import Login_Codes #9/3/2023
 import knowledge_Database #9/22/2023
 import time
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 ### Initialize Hugging Face Credentials
 with st.sidebar:

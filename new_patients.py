@@ -253,7 +253,8 @@ def get_new_jitter_shimmer_motor_UPDRS_score(f, gbr_model):
       session_new.new_shimmers.append(feats[2]) #new_shimmers
   
       ## double check prediction: mortal_UPDRS score!!
-      st.write(f"File: {label} | Age: {age} | Sex: {sex} -> Pred: {pred:.2f}")
+      #st.write(f"File: {label} | Age: {age} | Sex: {sex} -> Pred: {pred:.2f}")
+      st.write(f" Age: {age} | Sex: {sex} -> Pred: {pred:.2f}")
 
 @st.cache_resource
 def Load_motor_UPDRS_model():

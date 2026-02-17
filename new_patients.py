@@ -2,6 +2,8 @@
 import streamlit as st
 from scipy.spatial.distance import euclidean
 from datetime import datetime
+import parselmouth
+from parselmouth.praat import call
 
 session_new = st.session_state  #keep new patients' 6 info
 if 'new_vecs' not in session_new:

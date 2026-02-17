@@ -104,18 +104,30 @@ def get_embedding(path, loaded_model):
   START = 0
 
   # Add batch dimension
-  input_tensor = np.expand_dims(audio_array[START: START + CLIP_LENGTH], axis=0)
+  ##input_tensor = np.expand_dims(audio_array[START: START + CLIP_LENGTH], axis=0)
+  # Prepare input tensor (adjust shape based on model requirements)
+  input_tensor = tf.constant(audio_data[np.newaxis, :], dtype=tf.float32)
 
   # Load the model directly from Hugging Face Hub
   #loaded_model = from_pretrained_keras("google/hear")
 
   # Call inference
-  infer = lambda audio_array: loaded_model.signatures["serving_default"](x=audio_array)
-  output = infer(tf.constant(input_tensor, dtype=tf.float32))
+  ##infer = lambda audio_array: loaded_model.signatures["serving_default"](x=audio_array)
+  ##output = infer(tf.constant(input_tensor, dtype=tf.float32))
+  # Call TFSMLayer directly (not via signatures)
+  output = loaded_model(input_tensor)
+
+  # Extract embedding - output is a dict
+  if isinstance(output, dict):
+    # Get the first output key
+    key = list(output.keys())[0]
+    embedding_vector = output[key].numpy().flatten()  
+  else:
+    embedding_vector = output.numpy().flatten()    
 
   # Extract the embedding vector
-  embedding_vector = output['output_0'].numpy().flatten()
-  ##print("Size of embedding vector:", len(embedding_vector))
+  ##embedding_vector = output['output_0'].numpy().flatten()
+  st.write("Size of embedding vector:", len(embedding_vector))
 
   ## Plot the wave => Comment out
   # Plot the embedding vector

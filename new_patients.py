@@ -197,8 +197,8 @@ def get_demographics(filename):
 # ==========================================
 def get_acoustics_pro(path):
   try:
-    #sound = parselmouth.Sound(path)
-    sound = parselmouth.Sound("recording.wav")
+    sound = parselmouth.Sound(path)
+    #sound = parselmouth.Sound("recording.wav")
     ##if sound.get_total_duration() < 0.5: return None
     st.write("after 1 retun none!")
 

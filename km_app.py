@@ -158,6 +158,7 @@ def load_data():
     pd_vectors = pd_vectors_back.values.tolist()
 
     if session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
+        session_new.new_distances = []
         for vecs in session_new.new_vecs:
             session_new.new_distances.append(euclidean(vecs, golden_vector)) #new_distances	
 

@@ -4,6 +4,7 @@ streamlit-mic-recorder
 ipywidgets
 tensorflow
 streamlit-audiorec
+praat-parselmouth
 #11/28/2023 debugginh...
 #openai
 openai==0.28

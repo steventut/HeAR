@@ -155,7 +155,7 @@ def load_data():
     # --- 5. GENERATE PLOT 1: UPDATED PCA MAP ---
     if session_new.demo_stage == "Baseline Model": # Demo 1
         all_vectors = [golden_vector] + healthy_vectors	
-	elif session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
+    elif session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
         all_vectors = [golden_vector] + healthy_vectors + pd_vectors
 	
     pca = PCA(n_components=2)
@@ -310,32 +310,6 @@ def load_data():
     # Render the 3 distinct plots
     plt.show()
     st.pyplot()
-
-def new_patient():
-    # simple_recorder.py
-    import subprocess
-    import os
-    from audiorecorder import audiorecorder
-
-    st.title("🎙️ Voice Recorder")
-
-    audio = audiorecorder("🎙️ Record", "🔴 Stop")
-
-    if len(audio) > 0:
-        # Save as temp webm
-        audio.export("temp.webm", format="webm")
-    
-        # Convert to WAV
-        subprocess.run([
-            'ffmpeg', '-y', '-i', 'temp.webm',
-            '-ar', '16000', '-ac', '1',
-            'recording.wav'
-        ], capture_output=True)
-    
-        os.remove("temp.webm")
-    
-        st.success("✅ Saved: recording.wav")
-        st.audio("recording.wav")	
 
 menu_functions = ["Product Description", "Baseline Model","Ahh: Capturing Voice Biomarker", "Monitoring History"]
 choice_menu = st.sidebar.radio("Menu", menu_functions)

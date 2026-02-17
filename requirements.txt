@@ -1,5 +1,6 @@
 streamlit
 audio-recorder-streamlit
+ffmpeg
 #11/28/2023 debugginh...
 #openai
 openai==0.28

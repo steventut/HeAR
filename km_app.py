@@ -7,6 +7,7 @@ import streamlit as st
 #import openai #9/22/2023  
 import Login_Codes #9/3/2023
 import knowledge_Database #9/22/2023
+import recording #2/17/2026
 import time
 import pandas as pd
 import numpy as np
@@ -335,5 +336,4 @@ elif choice_menu == "Baseline Model":
     st.markdown("### Clustering Voice Biomarker for both Healthy People and Parkinson Patients")
     load_data()
 elif choice_menu == "Ahh: Capturing Voice Biomarker":
-    new_patient()
-
+    recording.recording()

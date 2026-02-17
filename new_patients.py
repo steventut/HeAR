@@ -13,7 +13,7 @@ if 'new_vecs' not in session_state_new:
   session_new.new_shimmers = []
   session_new.new_updrs_scores = []
 
-def Login_huggingface_and_Load_HeAR_model()
+def Login_huggingface_and_Load_HeAR_model():
   #Cell 2: Login to Huggin Face
   from huggingface_hub.utils import HfFolder
   

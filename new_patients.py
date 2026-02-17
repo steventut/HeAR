@@ -3,7 +3,7 @@ import streamlit as st
 from scipy.spatial.distance import euclidean
 from datetime import datetime
 
-'''session_new = st.session_state  #keep new patients' 6 info
+session_new = st.session_state  #keep new patients' 6 info
 if 'new_vecs' not in session_new:
   session_new.demo_stage = "Baseline Model"
   session_new.new_vecs = []
@@ -11,7 +11,7 @@ if 'new_vecs' not in session_new:
   session_new.new_distances = []
   session_new.new_jitters = []
   session_new.new_shimmers = []
-  session_new.new_updrs_scores = []'''
+  session_new.new_updrs_scores = []
 
 def Login_huggingface_and_Load_HeAR_model():
   #Cell 2: Login to Huggin Face

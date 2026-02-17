@@ -143,6 +143,7 @@ def get_embedding(path, loaded_model):
 
 ###### HeAR: new_patients
 ###### HeAR: new_patients
+new_vecs = []
 def new_patients():
   # --- 4. PROCESS NEW PERSON ---
   session_new.demo_stage = "Ahh: Capturing Voice Biomarker" #New patient comeing in for healthy and PD progression check
@@ -151,6 +152,6 @@ def new_patients():
   st.write (f"--- 🔍 Analyzing New Input: new_person_file ---")
   new_person_file = "recording.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav"
   st.write("⏳ Processing new patient's embedding vectors...")
-  session_new.new_vecs.append(get_embedding(new_person_file, loaded_model)) #new_vecs
-  st.write(session_new.new_vecs)
-  session_new.new_labels.append(datetime.now().strftime("%Y-%m-%d\n%H:%M")) #new_labels
+  new_vecs.append(get_embedding(new_person_file, loaded_model)) #new_vecs
+  st.write(new_vecs)
+  #session_new.new_labels.append(datetime.now().strftime("%Y-%m-%d\n%H:%M")) #new_labels

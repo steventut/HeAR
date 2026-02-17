@@ -8,6 +8,7 @@ import streamlit as st
 import Login_Codes #9/3/2023
 import knowledge_Database #9/22/2023
 import recording #2/17/2026
+import new_patients #2/17/2026
 import time
 import pandas as pd
 import numpy as np

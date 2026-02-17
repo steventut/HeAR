@@ -4,7 +4,7 @@ from st_audiorec import st_audiorec
 import os
 
 def recording():
-    st.title("🎙️ Voice Recorder")
+    st.title("🎙️ Voice Recorder2")
     
     # Initialize session state
     if 'audio_saved' not in st.session_state:

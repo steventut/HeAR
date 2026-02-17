@@ -195,11 +195,14 @@ def get_demographics(filename):
 # ==========================================
 def get_acoustics_pro(path):
   try:
-    sound = parselmouth.Sound(path)
+    #sound = parselmouth.Sound(path)
+    sound = parselmouth.Sound("recording.wav")
     if sound.get_total_duration() < 0.5: return None
+    st.write("after 1 retun none!")
 
     pitch = sound.to_pitch(time_step=0.01, pitch_floor=75.0, pitch_ceiling=600.0)
     if pitch.count_voiced_frames() == 0: return None
+    st.write("after 2 retun none!")
     pp = call(sound, "To PointProcess (periodic, cc)", 75.0, 600.0)
 
     # 1. Jitter

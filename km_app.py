@@ -336,4 +336,4 @@ elif choice_menu == "Ahh: Capturing Voice Biomarker":
     if st.button("I am ready, continue!"):
         st.write("Processing started...")
         new_patients.new_patients()
-        #load_data()
+        load_data()

@@ -146,10 +146,17 @@ def load_data():
     pd_vectors_back = pd.read_csv("pd_vectors.csv")
     pd_vectors = pd_vectors_back.values.tolist()
 
+    if session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
+        for vecs in new_vecs:
+            session_new.new_distances.append(euclidean(vecs, golden_vector)) #new_distances	
+
     # Demo 1: show baseline model (no new patient)
     # --- 5. GENERATE PLOT 1: UPDATED PCA MAP ---
-    all_vectors = [golden_vector] + healthy_vectors + pd_vectors
-    #all_vectors = [golden_vector] + healthy_vectors + pd_vectors + new_vecs
+    if session_new.demo_stage == "Baseline Model": # Demo 1
+        all_vectors = [golden_vector] + healthy_vectors	
+	elif session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
+        all_vectors = [golden_vector] + healthy_vectors + pd_vectors
+	
     pca = PCA(n_components=2)
     all_2d = pca.fit_transform(np.array(all_vectors))
 
@@ -157,8 +164,10 @@ def load_data():
     healthy_2d = all_2d[1:len(healthy_vectors)+1]
     #pd_2d = all_2d[len(healthy_vectors)+1:-1]
     pd_2d = all_2d[1+len(healthy_vectors)+1:1+len(healthy_vectors)+1+len(pd_vectors)]
-    new_2d = []
-    #new_2d = all_2d[-len(new_vecs):]
+    
+    if session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
+        #new_2d = []
+        new_2d = all_2d[-len(new_vecs):]
 
     ### Copy codes from Main Program: Progression Monitoring Dashboard (1)
     # Cell 11: Main Program: Progression Monitoring Dashboard (1): PCA Clustering Map
@@ -181,7 +190,8 @@ def load_data():
                  arrowprops=dict(arrowstyle="->", color='red', linestyle='--', linewidth=1.5, alpha=0.5))
 
     # 5. The New Person (Blue Dot)
-    if len(new_2d) != 0:
+    #if len(new_2d) != 0:
+    if session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
         plt.scatter(new_2d[:,0], new_2d[:,1], c='blue', s=400, edgecolors='white', linewidth=3, zorder=20, label='New Input')
         for i, txt in enumerate(new_labels):
             plt.annotate(txt, (new_2d[i, 0], new_2d[i, 1]),
@@ -332,8 +342,11 @@ if choice_menu == "Product Description":
     st.title("Prodcut Description")
     st.markdown("### Parkinson Disease Progression Monitoring System using Voice Biomarker（google/HeAR）")
 elif choice_menu == "Baseline Model":
+    session_new.demo_stage = "Baseline Model"
     st.title("Baseline Model")
     st.markdown("### Clustering Voice Biomarker for both Healthy People and Parkinson Patients")
     load_data()
 elif choice_menu == "Ahh: Capturing Voice Biomarker":
     recording.recording()
+    new_patients()
+    load_data()

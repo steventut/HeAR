@@ -15,3 +15,5 @@ def recording():
         
         st.success("✅ Saved: recording.wav")
         st.audio(wav_audio_data, format='audio/wav')
+        
+recording()

@@ -199,7 +199,7 @@ def get_acoustics_pro(path):
   try:
     #sound = parselmouth.Sound(path)
     sound = parselmouth.Sound("recording.wav")
-    if sound.get_total_duration() < 0.5: return None
+    ##if sound.get_total_duration() < 0.5: return None
     st.write("after 1 retun none!")
 
     pitch = sound.to_pitch(time_step=0.01, pitch_floor=75.0, pitch_ceiling=600.0)

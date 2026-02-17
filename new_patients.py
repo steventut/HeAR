@@ -83,15 +83,62 @@ def resample_audio_and_convert_to_mono(
 
   return resampled_audio_mono
 
+# Cell 6: Compute embedding vectors for each voice biomarker
+import tensorflow as tf
+import matplotlib.pyplot as plt
+
+def get_embedding(path, loaded_model):
+# Load file: normal.wav
+with open(path, 'rb') as f:
+  original_sampling_rate, audio_array = wavfile.read(f)
+  ##print(f"Sample Rate: {original_sampling_rate} Hz")
+  ##print(f"Data Shape: {audio_array.shape}")
+  ##print(f"Data Type: {audio_array.dtype}")
+
+  ##Play buttom to hear the sound. => Comment out
+  audio_array = resample_audio_and_convert_to_mono(audio_array, original_sampling_rate, SAMPLE_RATE)
+  ##display(Audio(audio_array, rate=SAMPLE_RATE))
+
+  # This index corresponds to a cough and was determined by hand. In practice, you
+  # would need a detector.
+  START = 0
+
+  # Add batch dimension
+  input_tensor = np.expand_dims(audio_array[START: START + CLIP_LENGTH], axis=0)
+
+  # Load the model directly from Hugging Face Hub
+  #loaded_model = from_pretrained_keras("google/hear")
+
+  # Call inference
+  infer = lambda audio_array: loaded_model.signatures["serving_default"](x=audio_array)
+  output = infer(tf.constant(input_tensor, dtype=tf.float32))
+
+  # Extract the embedding vector
+  embedding_vector = output['output_0'].numpy().flatten()
+  ##print("Size of embedding vector:", len(embedding_vector))
+
+  ## Plot the wave => Comment out
+  # Plot the embedding vector
+  '''plt.figure(figsize=(12, 4))
+  plt.plot(embedding_vector2)
+  plt.title('Embedding Vector')
+  plt.xlabel('Index')
+  plt.ylabel('Value')
+  plt.grid(True)
+  plt.show()'''
+  print("✅ Compute embeddings function defined.")
+  return embedding_vector
+
+###### HeAR: new_patients
 ###### HeAR: new_patients
 def new_patients():
   # --- 4. PROCESS NEW PERSON ---
   session_new.demo_stage = "Ahh: Capturing Voice Biomarker" #New patient comeing in for healthy and PD progression check
   Login_huggingface_and_Load_HeAR_model()
-  Load_HeAR_model()
+  loaded_model = Load_HeAR_model()
   st.write (f"--- 🔍 Analyzing New Input: new_person_file ---")
   new_person_file = "recording.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav"
   st.write("⏳ Processing new patient's embedding vectors...")
-  session_new.new_vecs.append(get_embedding(new_person_file)) #new_vecs
+  session_new.new_vecs.append(get_embedding(new_person_file, loaded_model)) #new_vecs
   st.write(session_new.new_vecs)
   session_new.new_labels.append(datetime.now().strftime("%Y-%m-%d\n%H:%M")) #new_labels

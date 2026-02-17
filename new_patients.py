@@ -106,7 +106,8 @@ def get_embedding(path, loaded_model):
   # Add batch dimension
   ##input_tensor = np.expand_dims(audio_array[START: START + CLIP_LENGTH], axis=0)
   # Prepare input tensor (adjust shape based on model requirements)
-  input_tensor = tf.constant(audio_data[np.newaxis, :], dtype=tf.float32)
+  #input_tensor = tf.constant(audio_data[np.newaxis, :], dtype=tf.float32)
+  input_tensor = tf.constant(audio_array[np.newaxis, :], dtype=tf.float32)
 
   # Load the model directly from Hugging Face Hub
   #loaded_model = from_pretrained_keras("google/hear")

@@ -227,7 +227,7 @@ def get_new_jitter_shimmer_motor_UPDRS_score(f, gbr_model):
   for f in all_files_to_process:
     # 1. Get Acoustics
     feats = get_acoustics_pro(f)
-    print(feats)
+    st.write("feats):", feats)
     if feats:
       # 2. Get Demographics automatically
       age, sex = get_demographics(f)

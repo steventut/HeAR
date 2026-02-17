@@ -17,6 +17,16 @@ from scipy.spatial.distance import euclidean
 from datetime import datetime
 import matplotlib.pyplot as plt
 
+session_new = st.session_state  #keep new patients' 6 info
+if 'new_vecs' not in session_new:
+  session_new.demo_stage = "Baseline Model"
+  session_new.new_vecs = []
+  session_new.new_labels = []
+  session_new.new_distances = []
+  session_new.new_jitters = []
+  session_new.new_shimmers = []
+  session_new.new_updrs_scores = []
+
 ### Initialize Hugging Face Credentials
 with st.sidebar:
     ##st.title('🤗💬 HugChat')

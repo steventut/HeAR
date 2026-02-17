@@ -4,7 +4,7 @@ from scipy.spatial.distance import euclidean
 from datetime import datetime
 
 session_new = st.session_state  #keep new patients' 6 info
-if 'new_vecs' not in session_state_new:
+if 'new_vecs' not in session_new:
   session_new.demo_stage = "Baseline Model"
   session_new.new_vecs = []
   session_new.new_labels = []

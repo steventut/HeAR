@@ -2,7 +2,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-recording():
+def recording():
   st.title("🎙️ Voice Recorder")
   
   recorder_html = """

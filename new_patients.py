@@ -269,7 +269,7 @@ def new_patients():
   new_person_file = "recording.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav"
   st.write("⏳ Processing new patient's embedding vectors...")
   session_new.new_vecs.append(get_embedding(new_person_file, loaded_model)) #new_vecs
-  st.write(session_new.new_vecs)
+  #st.write(session_new.new_vecs)
   session_new.new_labels.append(datetime.now().strftime("%Y-%m-%d\n%H:%M")) #new_labels
   loaded_model_motor_UPDRS = Load_motor_UPDRS_model()
-  get_new_jitter_shimmer_motor_UPDRS_score(f, loaded_model_motor_UPDRS) #new jitter_shimmer_motor_UPDRS_score
+  get_new_jitter_shimmer_motor_UPDRS_score(new_person_file, loaded_model_motor_UPDRS) #new jitter_shimmer_motor_UPDRS_score

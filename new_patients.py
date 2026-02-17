@@ -13,7 +13,6 @@ if 'new_vecs' not in session_new:
   session_new.new_shimmers = []
   session_new.new_updrs_scores = []
 
-@st.cache_resource
 def Login_huggingface_and_Load_HeAR_model():
   #Cell 2: Login to Huggin Face
   from huggingface_hub.utils import HfFolder
@@ -22,10 +21,24 @@ def Login_huggingface_and_Load_HeAR_model():
       from huggingface_hub import notebook_login
       notebook_login()
   # Cell 5: Load google/HeAR Model
-  from huggingface_hub import from_pretrained_keras
+  ##from huggingface_hub import from_pretrained_keras
   
   # Load the model directly from Hugging Face Hub
-  loaded_model = from_pretrained_keras("google/hear")
+  ##loaded_model = from_pretrained_keras("google/hear")
+  ##st.write("✅ AI Ready.")
+  ##return loaded_model
+
+@st.cache_resource
+def Load_HeAR_model():
+  import keras
+  from huggingface_hub import snapshot_download
+    
+  # Download model files (cached automatically)
+  model_path = snapshot_download(repo_id="google/hear")
+    
+  # Load as inference-only layer - minimal memory footprint
+  loaded_model = keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
+    
   st.write("✅ AI Ready.")
   return loaded_model
 
@@ -33,6 +46,7 @@ def new_patients():
   # --- 4. PROCESS NEW PERSON ---
   session_new.demo_stage = "Ahh: Capturing Voice Biomarker" #New patient comeing in for healthy and PD progression check
   Login_huggingface_and_Load_HeAR_model()
+  Load_HeAR_model()
   st.write (f"--- 🔍 Analyzing New Input: new_person_file ---")
   new_person_file = "recording.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav"
   st.write("⏳ Processing new patient's embedding vectors...")

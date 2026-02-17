@@ -220,7 +220,7 @@ def get_acoustics_pro(path):
   except:
     return None
 
-def get_new_jitter_shimmer_motor_UPDRS_score(f, gbr_model)
+def get_new_jitter_shimmer_motor_UPDRS_score(f, gbr_model):
   ## Steve: get jitter, shimmer and motor_UPDRS
   st.write("⏳ Processing new patient's jitter, shimmer & predicted motor_UPDRS score...")
   all_files_to_process = [f]

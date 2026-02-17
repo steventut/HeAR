@@ -237,7 +237,7 @@ def load_data():
           'Shimmer': session_new.new_shimmers,
           'Predicted motor_UPDRS': session_new.new_updrs_scores
         }
-		st.write(data)
+        st.write(data)
         df_new = pd.DataFrame(data)
         df_sorted = pd.concat([df_sorted, df_new], ignore_index=True)
         st.write(df_sorted)

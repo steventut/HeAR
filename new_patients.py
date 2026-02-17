@@ -245,8 +245,8 @@ def get_new_jitter_shimmer_motor_UPDRS_score(f, gbr_model):
       session_new.new_updrs_scores.append(pred) #new_updrs_scores
   
       # Clean label for graph
-      label = f.split("/")[-1] # Simple filename
-      final_labels_updrs.append(label)
+      ##label = f.split("/")[-1] # Simple filename
+      ##final_labels_updrs.append(label)
   
       # Steve: added for new_jitter, new_shimmer
       session_new.new_jitters.append(feats[0]) #new_jitters

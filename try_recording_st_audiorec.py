@@ -58,7 +58,10 @@ def recording():
         const reader = new FileReader();
         reader.onloadend = () => {
             const base64 = reader.result.split(',')[1];
-            window.parent.postMessage({type:'streamlit:setComponentValue', value: base64}, '*');
+            // Copy to clipboard for manual paste
+            navigator.clipboard.writeText(base64).then(() => {
+                document.getElementById('status').innerText = '✅ Copied! Paste below and press Enter.';
+            });
         };
         reader.readAsDataURL(wavBlob);
     }
@@ -84,11 +87,11 @@ def recording():
     </script>
     """
     
-    # Component returns base64 when Save is clicked
-    audio_base64 = components.html(recorder_html, height=180, key="recorder")
+    # Component without key parameter
+    components.html(recorder_html, height=180)
     
-    # Receive data via text input (workaround for component communication)
-    audio_input = st.text_input("Paste audio data (auto-filled):", key="audio_data", label_visibility="collapsed")
+    # Text input to receive pasted base64 data
+    audio_input = st.text_input("Paste audio data here:", key="audio_data")
     
     if audio_input and len(audio_input) > 100:
         try:
@@ -96,7 +99,10 @@ def recording():
             with open("recording.wav", "wb") as f:
                 f.write(audio_bytes)
             st.success(f"✅ Saved: recording.wav ({len(audio_bytes):,} bytes)")
-        except:
-            pass
+            st.audio(audio_bytes, format='audio/wav')
+        except Exception as e:
+            st.error(f"Error: {e}")
 
-recording()
+# Run
+if __name__ == "__main__":
+    recording()

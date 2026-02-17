@@ -165,9 +165,9 @@ def load_data():
     # Demo 1: show baseline model (no new patient)
     # --- 5. GENERATE PLOT 1: UPDATED PCA MAP ---
     if session_new.demo_stage == "Baseline Model": # Demo 1
-        all_vectors = [golden_vector] + healthy_vectors	
+        all_vectors = [golden_vector] + healthy_vectors	 + pd_vectors
     elif session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
-        all_vectors = [golden_vector] + healthy_vectors + pd_vectors
+        all_vectors = [golden_vector] + healthy_vectors + pd_vectors + session_new.new_vecs
 	
     pca = PCA(n_components=2)
     all_2d = pca.fit_transform(np.array(all_vectors))

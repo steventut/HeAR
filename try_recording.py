@@ -123,21 +123,3 @@ function writeString(view, offset, string) {
 components.html(recorder_html, height=250)
 
 st.info("💡 Recording and conversion happens in your browser - no server upload needed!")
-```
-
----
-
-**Key differences:**
-
-| Feature | Server-side (audio-recorder-streamlit) | Client-side (JavaScript) |
-|---------|----------------------------------------|--------------------------|
-| Speed | Slow (network upload) | ⚡ Instant |
-| WAV conversion | ffmpeg on server | Web Audio API in browser |
-| Dependencies | ffmpeg, packages.txt | None |
-| Download | Through Streamlit | Direct browser download |
-
----
-
-**requirements.txt** (simplified - no ffmpeg needed):
-```
-streamlit

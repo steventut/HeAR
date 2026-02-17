@@ -299,6 +299,32 @@ def load_data():
     plt.show()
     st.pyplot()
 
+def new_patient():
+    # simple_recorder.py
+    import subprocess
+    import os
+    from audiorecorder import audiorecorder
+
+    st.title("🎙️ Voice Recorder")
+
+    audio = audiorecorder("🎙️ Record", "🔴 Stop")
+
+    if len(audio) > 0:
+        # Save as temp webm
+        audio.export("temp.webm", format="webm")
+    
+        # Convert to WAV
+        subprocess.run([
+            'ffmpeg', '-y', '-i', 'temp.webm',
+            '-ar', '16000', '-ac', '1',
+            'recording.wav'
+        ], capture_output=True)
+    
+        os.remove("temp.webm")
+    
+        st.success("✅ Saved: recording.wav")
+        st.audio("recording.wav")	
+
 menu_functions = ["Product Description", "Baseline Model","Ahh: Capturing Voice Biomarker", "Monitoring History"]
 choice_menu = st.sidebar.radio("Menu", menu_functions)
 if choice_menu == "Product Description":
@@ -308,3 +334,6 @@ elif choice_menu == "Baseline Model":
     st.title("Baseline Model")
     st.markdown("### Clustering Voice Biomarker for both Healthy People and Parkinson Patients")
     load_data()
+elif choice_menu == "Ahh: Capturing Voice Biomarker":
+    new_patient()
+

@@ -1,5 +1,5 @@
 streamlit
-streamlit-audiorecorder
+audio-recorder-streamlit
 #11/28/2023 debugginh...
 #openai
 openai==0.28

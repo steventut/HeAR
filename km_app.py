@@ -323,5 +323,5 @@ elif choice_menu == "Baseline Model":
     load_data()
 elif choice_menu == "Ahh: Capturing Voice Biomarker":
     recording.recording()
-    new_patients()
-    load_data()
+    new_patients.new_patients()
+    #load_data()

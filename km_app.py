@@ -148,7 +148,7 @@ def load_data():
     pd_vectors = pd_vectors_back.values.tolist()
 
     if session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
-        for vecs in new_vecs:
+        for vecs in session_new.new_vecs:
             session_new.new_distances.append(euclidean(vecs, golden_vector)) #new_distances	
 
     # Demo 1: show baseline model (no new patient)
@@ -190,11 +190,11 @@ def load_data():
                  xytext=(pt[0], pt[1]), textcoords='data',     # Tail of arrow (Source)
                  arrowprops=dict(arrowstyle="->", color='red', linestyle='--', linewidth=1.5, alpha=0.5))
 
-    # 5. The New Person (Blue Dot)
+    # 5. The New Person (Blue Dot) => lebelling
     #if len(new_2d) != 0:
     if session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
         plt.scatter(new_2d[:,0], new_2d[:,1], c='blue', s=400, edgecolors='white', linewidth=3, zorder=20, label='New Input')
-        for i, txt in enumerate(new_labels):
+        for i, txt in enumerate(session_new.new_labels):
             plt.annotate(txt, (new_2d[i, 0], new_2d[i, 1]),
                  xytext=(5, 5), textcoords='offset points', fontsize=8, alpha=0.7, color='darkgreen')
 

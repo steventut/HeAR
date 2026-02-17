@@ -3,7 +3,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 def recording():
-  st.subtitle("🎙️ Capturing your voice biomarker using HAI-DEF: HeAR (Health Acoustic Representations) ")
+  st.subheader("🎙️ Capturing your voice biomarker using HAI-DEF: HeAR (Health Acoustic Representations) ")
   
   recorder_html = """
   <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/umd/ffmpeg.min.js"></script>

@@ -178,7 +178,7 @@ def load_data():
     
     if session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
         #new_2d = []
-        new_2d = all_2d[-len(new_vecs):]
+        new_2d = all_2d[-len(session_new.new_vecs):]
 
     ### Copy codes from Main Program: Progression Monitoring Dashboard (1)
     # Cell 11: Main Program: Progression Monitoring Dashboard (1): PCA Clustering Map

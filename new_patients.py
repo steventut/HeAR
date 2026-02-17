@@ -128,7 +128,7 @@ def get_embedding(path, loaded_model):
 
   # Extract the embedding vector
   ##embedding_vector = output['output_0'].numpy().flatten()
-  st.write("Size of embedding vector:", len(embedding_vector))
+  #st.write("Size of embedding vector:", len(embedding_vector))
 
   ## Plot the wave => Comment out
   # Plot the embedding vector
@@ -142,6 +142,121 @@ def get_embedding(path, loaded_model):
   print("✅ Compute embeddings function defined.")
   return embedding_vector
 
+# Cell 9: THE METADATA REGISTRY: Define patient's age and sex
+# ==========================================
+#  1. THE METADATA REGISTRY (INPUT DATA HERE)
+# ==========================================
+# FORMAT: "Unique_FileName_Part": [AGE, SEX]
+# Sex: 0 = Male, 1 = Female
+
+metadata_registry = {
+    # --- EXAMPLES (Replace with your actual data) ---
+    ##"Parkinson-01": [68, 0],   # 68 year old Male
+    ##"Parkinson-02": [68, 0],   # Same patient, later time
+    ##"VA1ABN":       [72, 1],   # 72 year old Female
+    ##"VA1lbuairgo":  [65, 0],
+    # ... Add your 17 files here ...
+    "Parkinson-01-VA1": [50, 0],
+    "Parkinson-02-VA2": [50, 0],
+    "Parkinson-11-VA1": [63, 1],
+    "Parkinson-12-VA2": [63, 1],
+    "VA1lbuairgo52M1606161813": [65, 0],
+    "VA1lloeroun56F2605161926": [61, 1],
+    "VA1rlouscsi77F2605161825": [40, 1],
+    "VA1rriovbie49M2605161845": [68, 0],
+    "VA1sncihcio44M1606161720": [73, 1],
+    "VA1ssacvhei61M1606161744": [56, 1],
+    "VA1ubguot_t40M1606161759": [77, 0],
+    "VA2lbuairgo52M1606161814": [65, 0],
+    "VA2rlouscsi77F2605161825": [40, 1],
+    "VA2rriovbie49M2605161845": [68, 0],
+    "VA2sncihcio44M1606161721": [73, 0],
+    "VA2ssacvhei61M1606161744": [56, 0],
+    "VA2ubguot_t40M1606161759": [77, 0],
+    ##"VA1AGNIGNEE54F230320171020": [63, 1], #Angela G	F	63: Healthy
+    "Steve-recording-1":  [67, 0],
+    "Steve-Simulate-Parkinson-1": [67, 0],
+    # DEFAULT (Fallback if file not found in list)
+    "DEFAULT":      [65, 0]
+}
+
+# Cell 10: Predict motor_UPDRS score
+## Move the following codes to cell: predict motor_UPDRS score
+## Steve: Start processing 4th plot: motor_UPDRS score
+def get_demographics(filename):
+  """Finds the Age/Sex for a given file based on the registry."""
+  for key, val in metadata_registry.items():
+    if key in filename:
+      return val[0], val[1] # Return Age, Sex
+  return metadata_registry["DEFAULT"] # Fallback
+
+# ==========================================
+#  2. ACOUSTIC FEATURE EXTRACTOR
+# ==========================================
+def get_acoustics_pro(path):
+  try:
+    sound = parselmouth.Sound(path)
+    if sound.get_total_duration() < 0.5: return None
+
+    pitch = sound.to_pitch(time_step=0.01, pitch_floor=75.0, pitch_ceiling=600.0)
+    if pitch.count_voiced_frames() == 0: return None
+    pp = call(sound, "To PointProcess (periodic, cc)", 75.0, 600.0)
+
+    # 1. Jitter
+    jitter_pct = call(pp, "Get jitter (local)", 0.0, 0.0, 0.0001, 0.02, 1.3) * 100
+    jitter_abs = call(pp, "Get jitter (local, absolute)", 0.0, 0.0, 0.0001, 0.02, 1.3)
+
+    # 2. Shimmer
+    shimmer_pct = call([sound, pp], "Get shimmer (local)", 0.0, 0.0, 0.0001, 0.02, 1.3, 1.6) * 100
+    shimmer_db  = call([sound, pp], "Get shimmer (local_dB)", 0.0, 0.0, 0.0001, 0.02, 1.3, 1.6)
+
+    # 3. Harmonics
+    harmonicity = call(sound, "To Harmonicity (cc)", 0.01, 75.0, 0.1, 1.0)
+    hnr = call(harmonicity, "Get mean", 0.0, 0.0)
+    if hnr < -200: hnr = -200
+    nhr = 10 ** (-hnr / 10)
+
+    return [jitter_pct, jitter_abs, shimmer_pct, shimmer_db, nhr, hnr]
+  except:
+    return None
+
+def get_new_jitter_shimmer_motor_UPDRS_score(f, gbr_model)
+  ## Steve: get jitter, shimmer and motor_UPDRS
+  st.write("⏳ Processing new patient's jitter, shimmer & predicted motor_UPDRS score...")
+  all_files_to_process = [f]
+  for f in all_files_to_process:
+    # 1. Get Acoustics
+    feats = get_acoustics_pro(f)
+    print(feats)
+    if feats:
+      # 2. Get Demographics automatically
+      age, sex = get_demographics(f)
+  
+      # 3. Create Vector: [Age, Sex, Jitter%, JitterAbs, Shim%, ShimDB, NHR, HNR]
+      full_vector = np.array([[age, sex] + feats])
+  
+      # 4. Predict
+      pred = gbr_model.predict(full_vector)[0]
+      session_new.new_updrs_scores.append(pred) #new_updrs_scores
+  
+      # Clean label for graph
+      label = f.split("/")[-1] # Simple filename
+      final_labels_updrs.append(label)
+  
+      # Steve: added for new_jitter, new_shimmer
+      session_new.new_jitters.append(feats[0]) #new_jitters
+      session_new.new_shimmers.append(feats[2]) #new_shimmers
+  
+      ## double check prediction: mortal_UPDRS score!!
+      st.write(f"File: {label} | Age: {age} | Sex: {sex} -> Pred: {pred:.2f}")
+
+@st.cache_resource
+def Load_motor_UPDRS_model():
+  import joblib
+  loaded_model = joblib.load('motor_updrs_model.joblib')
+  st.write("✅ Motor_UPRDS Model loaded successfully!")
+  return loaded_model
+  
 ###### HeAR: new_patients
 ###### HeAR: new_patients
 new_vecs = []
@@ -156,3 +271,5 @@ def new_patients():
   session_new.new_vecs.append(get_embedding(new_person_file, loaded_model)) #new_vecs
   st.write(session_new.new_vecs)
   session_new.new_labels.append(datetime.now().strftime("%Y-%m-%d\n%H:%M")) #new_labels
+  loaded_model_motor_UPDRS = Load_motor_UPDRS_model()
+  get_new_jitter_shimmer_motor_UPDRS_score(f, loaded_model_motor_UPDRS) #new jitter_shimmer_motor_UPDRS_score

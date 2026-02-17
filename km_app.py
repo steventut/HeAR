@@ -329,7 +329,7 @@ if choice_menu == "Product Description":
     st.title("Prodcut Description")
     st.markdown("### Parkinson Disease Progression Monitoring System using Voice Biomarker（google/HeAR）")
 elif choice_menu == "Baseline Model":
-    #session_new.demo_stage = "Baseline Model"
+    session_new.demo_stage = "Baseline Model"
     st.title("Baseline Model")
     st.markdown("### Clustering Voice Biomarker for both Healthy People and Parkinson Patients")
     load_data()

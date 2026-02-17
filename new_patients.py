@@ -88,9 +88,9 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 
 def get_embedding(path, loaded_model):
-# Load file: normal.wav
-with open(path, 'rb') as f:
-  original_sampling_rate, audio_array = wavfile.read(f)
+  # Load file: normal.wav
+  with open(path, 'rb') as f:
+    original_sampling_rate, audio_array = wavfile.read(f)
   ##print(f"Sample Rate: {original_sampling_rate} Hz")
   ##print(f"Data Shape: {audio_array.shape}")
   ##print(f"Data Type: {audio_array.dtype}")

@@ -272,8 +272,8 @@ def new_patients():
   Login_huggingface_and_Load_HeAR_model()
   loaded_model = Load_HeAR_model()
   st.write (f"--- 🔍 Analyzing New Input: new_person_file ---")
-  #new_person_file = "recording.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav" "VA1AGNIGNEE54F230320171020.wav"
-  new_person_file = "VA1AGNIGNEE54F230320171020.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav" "VA1AGNIGNEE54F230320171020.wav"
+  new_person_file = "recording.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav" "VA1AGNIGNEE54F230320171020.wav"
+  #new_person_file = "VA1AGNIGNEE54F230320171020.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav" "VA1AGNIGNEE54F230320171020.wav"
   st.write("⏳ Processing new patient's embedding vectors...")
   session_new.new_vecs.append(get_embedding(new_person_file, loaded_model)) #new_vecs
   #st.write(session_new.new_vecs)

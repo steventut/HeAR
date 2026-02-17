@@ -1,6 +1,7 @@
 streamlit
 huggingface_hub==0.23.5
 ipywidgets
+tensorflow
 #11/28/2023 debugginh...
 #openai
 openai==0.28

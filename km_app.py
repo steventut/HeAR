@@ -323,19 +323,22 @@ def load_data():
     plt.show()
     st.pyplot()
 
-menu_functions = ["Product Description", "Baseline Model","Ahh: Capturing Voice Biomarker", "Monitoring History"]
+menu_functions = ["Product Description", "Baseline Model","Ahh: Capturing Voice Biomarker", "Monitoring Health History"]
 choice_menu = st.sidebar.radio("Menu", menu_functions)
 if choice_menu == "Product Description":
     st.title("Prodcut Description")
     st.markdown("### Parkinson Disease Progression Monitoring System using Voice Biomarker（google/HeAR）")
-elif choice_menu == "Baseline Model":
+elif choice_menu == "Baseline Model": #Demo 1
     session_new.demo_stage = "Baseline Model"
     st.title("Baseline Model")
     st.markdown("### Clustering Voice Biomarker for both Healthy People and Parkinson Patients")
     load_data()
-elif choice_menu == "Ahh: Capturing Voice Biomarker":
+elif choice_menu == "Ahh: Capturing Voice Biomarker": #Demo 2
     recording.recording()
     if st.button("I am ready, continue!"):
         st.write("Processing started...")
         new_patients.new_patients()
         load_data()
+elif choice_menu == "Monitoring Health History": #Demo 3
+    Monitoring_Health_History()
+    load_data()

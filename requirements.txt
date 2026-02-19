@@ -2,7 +2,7 @@ streamlit
 huggingface_hub==0.23.5
 streamlit-mic-recorder
 ipywidgets
-tensorflow
+tensorflow==2.15.0
 streamlit-audiorec
 praat-parselmouth
 #11/28/2023 debugginh...

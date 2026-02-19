@@ -352,3 +352,9 @@ elif choice_menu == "Ahh: Capturing Voice Biomarker": #Demo 2
 elif choice_menu == "Monitoring Health History": #Demo 3
     new_patients.Monitoring_Health_History()
     load_data()
+    session_new.new_vecs = []
+    session_new.new_labels = []
+    session_new.new_distances = []
+    session_new.new_jitters = []
+    session_new.new_shimmers = []
+    session_new.new_updrs_scores = []

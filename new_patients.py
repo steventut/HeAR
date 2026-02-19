@@ -1,5 +1,6 @@
 # Demo 2: I will simulate a new pd patient, talk to cell phone with shaky voice
 import streamlit as st
+import pandas as pd
 from scipy.spatial.distance import euclidean
 from datetime import datetime
 import parselmouth

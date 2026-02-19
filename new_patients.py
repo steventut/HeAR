@@ -30,8 +30,26 @@ def Login_huggingface_and_Load_HeAR_model():
   ##st.write("✅ AI Ready.")
   ##return loaded_model
 
+
 @st.cache_resource
 def Load_HeAR_model():
+  import os
+
+  # Force using Keras 2
+  os.environ["TF_USE_LEGACY_KERAS"] = "1"
+  import tf_keras as keras
+  from huggingface_hub import snapshot_download
+    
+  # Download model files
+  model_path = snapshot_download(repo_id="google/hear")
+    
+  # Load with legacy Keras
+  loaded_model = keras.models.load_model(model_path)
+  st.write("✅ AI google/HeAR Model Ready!")
+  return loaded_model
+  
+@st.cache_resource
+def Load_HeAR_mode_temp2l():
   # Cell 5: Load google/HeAR Model, original codes!!
   from huggingface_hub import from_pretrained_keras
 

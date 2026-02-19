@@ -341,7 +341,7 @@ def new_patients():
   loaded_model_motor_UPDRS = Load_motor_UPDRS_model()
   get_new_jitter_shimmer_motor_UPDRS_score(new_person_file, loaded_model_motor_UPDRS) #new jitter_shimmer_motor_UPDRS_score
 
-Monitoring_Health_History():
+Def Monitoring_Health_History():
   session_new.demo_stage = "Monitoring Health History" # Monitoring Health History
   healthy_vectors_7_back = pd.read_csv("healthy_vectors_7.csv")
   healthy_vectors_7 = healthy_vectors_7_back.values.tolist()  

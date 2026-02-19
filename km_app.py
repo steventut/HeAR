@@ -168,6 +168,8 @@ def load_data():
         all_vectors = [golden_vector] + healthy_vectors	 + pd_vectors
     elif session_new.demo_stage == "Ahh: Capturing Voice Biomarker": # Demo 2
         all_vectors = [golden_vector] + healthy_vectors + pd_vectors + session_new.new_vecs
+    elif session_new.demo_stage == "Monitoring Health History": # Demo 3
+        all_vectors = [golden_vector] + healthy_vectors + pd_vectors + session_new.new_vecs		
 	
     pca = PCA(n_components=2)
     all_2d = pca.fit_transform(np.array(all_vectors))

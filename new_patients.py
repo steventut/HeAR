@@ -246,7 +246,7 @@ metadata_registry = {
     "Steve-Simulate-Parkinson-1": [67, 0],
     # DEFAULT (Fallback if file not found in list)
     # DEFAULT (Fallback if file not found in list)
-    "DEFAULT":      [65, 1]  #[65, 0]
+    "DEFAULT":      [65, 0]  #[65, 0]
 }
 
 # Cell 10: Predict motor_UPDRS score

@@ -32,6 +32,16 @@ def Login_huggingface_and_Load_HeAR_model():
 
 @st.cache_resource
 def Load_HeAR_model():
+  # Cell 5: Load google/HeAR Model, original codes!!
+  from huggingface_hub import from_pretrained_keras
+
+  # Load the model directly from Hugging Face Hub
+  loaded_model = from_pretrained_keras("google/hear")
+  st.write("✅ AI google/HeAR Model Ready!")
+  return loaded_model
+
+@st.cache_resource
+def Load_HeAR_model_temp():
   import keras
   from huggingface_hub import snapshot_download
     
@@ -90,6 +100,37 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 
 def get_embedding(path, loaded_model):
+  # Load file: normal.wav
+  with open(path, 'rb') as f:
+    original_sampling_rate, audio_array = wavfile.read(f)
+  ##print(f"Sample Rate: {original_sampling_rate} Hz")
+  ##print(f"Data Shape: {audio_array.shape}")
+  ##print(f"Data Type: {audio_array.dtype}")
+
+  ##Play buttom to hear the sound. => Comment out
+  audio_array = resample_audio_and_convert_to_mono(audio_array, original_sampling_rate, SAMPLE_RATE)
+  ##display(Audio(audio_array, rate=SAMPLE_RATE))
+
+  # This index corresponds to a cough and was determined by hand. In practice, you
+  # would need a detector.
+  START = 0
+
+  # Add batch dimension
+  input_tensor = np.expand_dims(audio_array[START: START + CLIP_LENGTH], axis=0)
+
+  # Load the model directly from Hugging Face Hub
+  #loaded_model = from_pretrained_keras("google/hear")
+
+  # Call inference
+  infer = lambda audio_array: loaded_model.signatures["serving_default"](x=audio_array)
+  output = infer(tf.constant(input_tensor, dtype=tf.float32))
+
+  # Extract the embedding vector
+  embedding_vector = output['output_0'].numpy().flatten()
+  ##print("Size of embedding vector:", len(embedding_vector))
+  return embedding_vector
+  
+def get_embedding_temp(path, loaded_model):
   # Load file: normal.wav
   with open(path, 'rb') as f:
     original_sampling_rate, audio_array = wavfile.read(f)

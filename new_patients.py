@@ -235,9 +235,16 @@ metadata_registry = {
     "VA2sncihcio44M1606161721": [73, 0],
     "VA2ssacvhei61M1606161744": [56, 0],
     "VA2ubguot_t40M1606161759": [77, 0],
-    ##"VA1AGNIGNEE54F230320171020": [63, 1], #Angela G	F	63: Healthy
+    ##
+    "VA1BCRAISGS48F210320171005": [63, 1], #BRIGIDA C F 69: Healthy
+    "VA1APNITNOT56F230320170850": [61, 1], #ANTONIETTA P F 61: Healthy
+    "VA1LFEIOONR57F210320171126": [63, 1], #LEONARDO F 60: Healthy
+    "VA2AGNIGNEE54F230320171021": [63, 1], #Angela G F 63: Healthy
+    "VA1AGNIGNEE54F230320171020": [63, 1], #Angela G F 63: Healthy
+    "VA2GBIAORVI48M230320171236": [69, 0], #Giovanni B M 69:  Healthy
     "Steve-recording-1":  [67, 0],
     "Steve-Simulate-Parkinson-1": [67, 0],
+    # DEFAULT (Fallback if file not found in list)
     # DEFAULT (Fallback if file not found in list)
     "DEFAULT":      [65, 1]  #[65, 0]
 }
@@ -332,7 +339,8 @@ def new_patients():
   Login_huggingface_and_Load_HeAR_model()
   loaded_model = Load_HeAR_model()
   st.write (f"--- 🔍 Analyzing New Input: new_person_file ---")
-  new_person_file = "recording.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav" "VA1AGNIGNEE54F230320171020.wav"
+  #new_person_file = "recording.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav" "VA1AGNIGNEE54F230320171020.wav"
+  new_person_file = "VA1BCRAISGS48F210320171005.wav"  # Excellent 25 0.39 3.7 11.9
   #new_person_file = "VA1AGNIGNEE54F230320171020.wav"  # Excellent 25 0.39 3.7 11.9
   ##"/content/Healthy/VA1GGIAORVG47F300320171212.wav" "VA1AGNIGNEE54F230320171020.wav"
   st.write("⏳ Processing new patient's embedding vectors...")

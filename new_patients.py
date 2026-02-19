@@ -340,7 +340,7 @@ def new_patients():
   loaded_model = Load_HeAR_model()
   st.write (f"--- 🔍 Analyzing New Input: new_person_file ---")
   #new_person_file = "recording.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav" "VA1AGNIGNEE54F230320171020.wav"
-  new_person_file = "VA2GLIIUSSC57M210320171053.wav"  # 
+  new_person_file = "VA2GBIAORVI48M230320171236.wav"  # 
 
   
   #new_person_file = "VA1AGNIGNEE54F230320171020.wav"  # Excellent 25 0.39 3.7 11.9

@@ -240,7 +240,7 @@ metadata_registry = {
     "VA1APNITNOT56F230320170850": [61, 1], #ANTONIETTA P F 61: Healthy
     "VA1LFEIOONR57F210320171126": [63, 1], #LEONARDO F 60: Healthy
     "VA2AGNIGNEE54F230320171021": [63, 1], #Angela G F 63: Healthy
-    "VA1AGNIGNEE54F230320171020": [63, 1], #Angela G F 63: Healthy
+    #"VA1AGNIGNEE54F230320171020": [63, 1], #Angela G F 63: Healthy
     "VA2GBIAORVI48M230320171236": [69, 0], #Giovanni B M 69:  Healthy
     "Steve-recording-1":  [67, 0],
     "Steve-Simulate-Parkinson-1": [67, 0],

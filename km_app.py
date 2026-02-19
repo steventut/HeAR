@@ -247,6 +247,12 @@ def load_data():
         df_sorted = pd.concat([df_sorted, df_new], ignore_index=True)
         st.write(df_sorted)
 
+    if session_new.demo_stage == "Monitoring Health History": # Demo 3
+        # Load the data back from the CSV file into a new variable
+        df_data_for_7_healthy = pd.read_csv("data_for_7_healthy.csv")        
+        st.write(df_data_for_7_healthy)
+        df_sorted = pd.concat([df_sorted, df_data_for_7_healthy], ignore_index=True)
+        st.write(df_sorted)	
     # 3. Merge all 4 plots into one single plot
     plt.figure(figsize=(14, 8))
 

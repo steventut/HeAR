@@ -342,5 +342,5 @@ elif choice_menu == "Ahh: Capturing Voice Biomarker": #Demo 2
         new_patients.new_patients()
         load_data()
 elif choice_menu == "Monitoring Health History": #Demo 3
-    Monitoring_Health_History()
+    new_patients.Monitoring_Health_History()
     load_data()

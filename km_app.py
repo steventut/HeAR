@@ -179,7 +179,7 @@ def load_data():
     #pd_2d = all_2d[len(healthy_vectors)+1:-1]
     pd_2d = all_2d[1+len(healthy_vectors)+1:1+len(healthy_vectors)+1+len(pd_vectors)]
     
-    if session_new.demo_stage == "Ahh: Capturing Voice Biomarker" or 
+    if session_new.demo_stage == "Ahh: Capturing Voice Biomarker" or \
 	    session_new.demo_stage == "Monitoring Health History": # Demo 2, Demo 3
         #new_2d = []
         new_2d = all_2d[-len(session_new.new_vecs):]
@@ -206,7 +206,7 @@ def load_data():
 
     # 5. The New Person (Blue Dot) => lebelling
     #if len(new_2d) != 0:
-    if session_new.demo_stage == "Ahh: Capturing Voice Biomarker" or 
+    if session_new.demo_stage == "Ahh: Capturing Voice Biomarker" or \
 	    session_new.demo_stage == "Monitoring Health History": # Demo 2, Demo 3
         plt.scatter(new_2d[:,0], new_2d[:,1], c='blue', s=400, edgecolors='white', linewidth=3, zorder=20, label='New Input')
         for i, txt in enumerate(session_new.new_labels):

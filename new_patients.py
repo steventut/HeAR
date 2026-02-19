@@ -355,6 +355,11 @@ def new_patients():
 def Monitoring_Health_History():
   session_new.demo_stage = "Monitoring Health History" # Monitoring Health History
   session_new.new_vecs = []
+  session_new.new_labels = []
+  session_new.new_distances = []
+  session_new.new_jitters = []
+  session_new.new_shimmers = []
+  session_new.new_updrs_scores = []
   healthy_vectors_7_back = pd.read_csv("healthy_vectors_7.csv")
   healthy_vectors_7 = healthy_vectors_7_back.values.tolist()  
   #session_new.new_vecs.append(healthy_vectors_7) #new_vecs

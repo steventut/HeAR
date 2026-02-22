@@ -165,6 +165,7 @@ def load_data():
             st.write("New patient's AI distance: ", round(session_new.new_distances[0]))
         else:
             st.write("New patient's AI distance: ", round(session_new.new_distances[1]))
+        st.title("Dashboard: Monitoring Health Progression")
 
     # Demo 1: show baseline model (no new patient)
     # --- 5. GENERATE PLOT 1: UPDATED PCA MAP ---
@@ -354,6 +355,7 @@ elif choice_menu == "Ahh: Capturing Voice Biomarker": #Demo 2
         new_patients.new_patients()
         load_data()
 elif choice_menu == "Monitoring Health History": #Demo 3
+    st.title("Dashboard: Monitoring Health Progression")
     new_patients.Monitoring_Health_History()
     load_data()
     session_new.new_vecs = []

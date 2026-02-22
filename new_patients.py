@@ -23,14 +23,6 @@ def Login_huggingface_and_Load_HeAR_model():
   if HfFolder.get_token() is None:
       from huggingface_hub import notebook_login
       notebook_login()
-  # Cell 5: Load google/HeAR Model
-  ##from huggingface_hub import from_pretrained_keras
-  
-  # Load the model directly from Hugging Face Hub
-  ##loaded_model = from_pretrained_keras("google/hear")
-  ##st.write("✅ AI Ready.")
-  ##return loaded_model
-
 
 @st.cache_resource
 def Load_HeAR_model():
@@ -46,31 +38,7 @@ def Load_HeAR_model():
     
   # Load with legacy Keras
   loaded_model = keras.models.load_model(model_path)
-  st.write("✅ AI google/HeAR Model Ready!")
-  return loaded_model
-  
-@st.cache_resource
-def Load_HeAR_mode_temp2l():
-  # Cell 5: Load google/HeAR Model, original codes!!
-  from huggingface_hub import from_pretrained_keras
-
-  # Load the model directly from Hugging Face Hub
-  loaded_model = from_pretrained_keras("google/hear")
-  st.write("✅ AI google/HeAR Model Ready!")
-  return loaded_model
-
-@st.cache_resource
-def Load_HeAR_model_temp():
-  import keras
-  from huggingface_hub import snapshot_download
-    
-  # Download model files (cached automatically)
-  model_path = snapshot_download(repo_id="google/hear")
-    
-  # Load as inference-only layer - minimal memory footprint
-  loaded_model = keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
-    
-  st.write("✅ AI Ready.")
+  st.write("✅ google/HeAR Model Loaded! AI Ready!!")
   return loaded_model
 
 #Cell 3: Sample codes from Huggin Face to use google/HeAR (1)

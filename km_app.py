@@ -162,9 +162,9 @@ def load_data():
         for vecs in session_new.new_vecs:
             session_new.new_distances.append(euclidean(vecs, golden_vector)) #new_distances	
     if len(session_new.new_distances) == 0:
-        st.write("New patient's AI distance: ", session_new.new_distances[0])
+        st.write("New patient's AI distance: ", session_new.new_distances[0]:.2f)
 	else:
-        st.write("New patient's AI distance: ", session_new.new_distances[1])
+        st.write("New patient's AI distance: ", session_new.new_distances[1]:.2f)
 
     # Demo 1: show baseline model (no new patient)
     # --- 5. GENERATE PLOT 1: UPDATED PCA MAP ---

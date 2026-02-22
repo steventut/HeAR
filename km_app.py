@@ -164,7 +164,7 @@ def load_data():
     if len(session_new.new_distances) == 0:
         st.write("New patient's AI distance: ", round(session_new.new_distances[0]))
     else:
-        st.write("New patient's AI distance: ", round(session_new.new_distances[1])
+        st.write("New patient's AI distance: ", round(session_new.new_distances[1]))
 
     # Demo 1: show baseline model (no new patient)
     # --- 5. GENERATE PLOT 1: UPDATED PCA MAP ---

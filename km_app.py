@@ -163,7 +163,7 @@ def load_data():
             session_new.new_distances.append(euclidean(vecs, golden_vector)) #new_distances	
     if len(session_new.new_distances) == 0:
         st.write("New patient's AI distance: ", session_new.new_distances[0])
-    elif:
+	else:
         st.write("New patient's AI distance: ", session_new.new_distances[1])
 
     # Demo 1: show baseline model (no new patient)

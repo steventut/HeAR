@@ -233,13 +233,9 @@ def get_demographics(filename):
 def get_acoustics_pro(path):
   try:
     sound = parselmouth.Sound(path)
-    #sound = parselmouth.Sound("recording.wav")
-    ##if sound.get_total_duration() < 0.5: return None
-    st.write("after 1 retun none!")
 
     pitch = sound.to_pitch(time_step=0.01, pitch_floor=75.0, pitch_ceiling=600.0)
     if pitch.count_voiced_frames() == 0: return None
-    st.write("after 2 retun none!")
     pp = call(sound, "To PointProcess (periodic, cc)", 75.0, 600.0)
 
     # 1. Jitter
@@ -267,7 +263,7 @@ def get_new_jitter_shimmer_motor_UPDRS_score(f, gbr_model):
   for f in all_files_to_process:
     # 1. Get Acoustics
     feats = get_acoustics_pro(f)
-    st.write("feats):", feats)
+    #st.write("feats):", feats)
     if feats:
       # 2. Get Demographics automatically
       age, sex = get_demographics(f)
@@ -306,11 +302,9 @@ def new_patients():
   session_new.demo_stage = "Ahh: Capturing Voice Biomarker" #New patient comeing in for healthy and PD progression check
   Login_huggingface_and_Load_HeAR_model()
   loaded_model = Load_HeAR_model()
-  st.write (f"--- 🔍 Analyzing New Input: new_person_file ---")
+  st.write (f"--- 🔍 Analyzing New Input: new patient file ---")
   new_person_file = "recording.wav"  #"/content/Healthy/VA1GGIAORVG47F300320171212.wav" "VA1AGNIGNEE54F230320171020.wav"
-  #new_person_file = "VA1GGIAORVG47F300320171212.wav"  # 
   #new_person_file = "VA1AGNIGNEE54F230320171020.wav"  # Excellent 25 0.39 3.7 11.9
-  ##"/content/Healthy/VA1GGIAORVG47F300320171212.wav" "VA1AGNIGNEE54F230320171020.wav"
   st.write("⏳ Processing new patient's embedding vectors...")
   session_new.new_vecs.append(get_embedding(new_person_file, loaded_model)) #new_vecs
   #st.write(session_new.new_vecs)

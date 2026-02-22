@@ -4,8 +4,10 @@ from streamlit_mic_recorder import mic_recorder
 import subprocess
 import os
 
+### Ahh: Capturing Voice Biomarker
 def recording():
     st.title("🎙️ Voice Recorder")
+    st.markdown("### Speak Ahh: Capturing Voice Biomarker")
     
     # Callback to save file immediately when recording stops
     def save_audio():
@@ -36,7 +38,7 @@ def recording():
     
     # Show status
     if st.session_state.get('audio_saved'):
-        st.success("✅ Saved: recording.wav")
+        st.success("✅ Voice File Saved: recording.wav")
         if os.path.exists("recording.wav"):
             st.audio("recording.wav")
             st.write(f"📁 Size: {os.path.getsize('recording.wav'):,} bytes")

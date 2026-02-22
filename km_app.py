@@ -33,30 +33,30 @@ with st.sidebar:
     st.title('Parkinson Disease Progression Monitoring using Voice Biomarker')
     st.write('v1.0')
     #if ('EMAIL' in st.secrets) and ('PASS' in st.secrets):
-    if 'api' in st.secrets:
+    #if 'api' in st.secrets:
         ##st.success('HuggingFace Login credentials already provided!', icon='✅')
         #hf_email = st.secrets['EMAIL']
         #hf_pass = st.secrets['PASS']
 	#openai.api_key = st.secrets['api']
-        api_key = True
-    else:
+     #   api_key = True
+    #else:
         #hf_email = st.text_input('Enter E-mail:', type='password')
         #hf_pass = st.text_input('Enter password:', type='password')
-        api_key = st.text_input('Enter api_key:', type='password')
+        #api_key = st.text_input('Enter api_key:', type='password')
         #if not (hf_email and hf_pass):
-        if not api_key:
-            st.warning('Please enter your credentials!', icon='⚠️')
-        else:
-            st.success('Proceed to entering your prompt message!', icon='👉')
+        #if not api_key:
+        #    st.warning('Please enter your credentials!', icon='⚠️')
+        #else:
+        #    st.success('Proceed to entering your prompt message!', icon='👉')
     ##st.markdown('📖 Learn how to build this app in this [blog](https://blog.streamlit.io/how-to-build-an-llm-powered-chatbot-with-streamlit/)!')
     
 # Store LLM generated responses
-if "messages" not in st.session_state.keys():
-    st.session_state.messages = [{"role": "assistant", "content": "企業智識庫機器人在此提供諮詢服務，How may I help you?"}]
-if "messages2" not in st.session_state.keys():
-    st.session_state.messages2 = []
+#if "messages" not in st.session_state.keys():
+#    st.session_state.messages = [{"role": "assistant", "content": "企業智識庫機器人在此提供諮詢服務，How may I help you?"}]
+#if "messages2" not in st.session_state.keys():
+#    st.session_state.messages2 = []
 
-### initialize login 
+'''### initialize login 
 def rerun():
     raise st.script_runner.RerunException(st.script_request_queue.RerunData(None))   
 session_state = st.session_state
@@ -139,12 +139,11 @@ elif choice == "Logout":
     st.session_state.isLoadedPizzaResturant = False
     st.session_state.isLoadedTradingStrategy = False
     st.session_state.isLoadedChineseMedicine = False	
-    st.session_state.isLoadedAIagent = False
+    st.session_state.isLoadedAIagent = False'''
 
 ##### HeAR added!
 st.set_page_config(
     page_title="Parkinson Disease Progression Monitoring System",
-    #page_icon="🐕",
     layout="wide"
 )
 ### Load voice files to generate embedding vectors and calculate AI distance

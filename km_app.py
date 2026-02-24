@@ -227,7 +227,8 @@ menu_functions = ["Product Description", "Baseline Model","Ahh: Capturing Voice 
 choice_menu = st.sidebar.radio("Menu", menu_functions)
 if choice_menu == "Product Description":
     st.title("Prodcut Description")
-    st.markdown("### Parkinson Disease Progression Monitoring System using Voice Biomarker（google/HeAR）")
+    st.markdown("## Vocalis-PD: A Multimodal Digital Biomarker Companion for Parkinson’s Therapies")
+    st.markdown("### Vocalis-PD is a Parkinson Disease Progression Monitoring System using Voice Biomarker（google/HeAR）")
 elif choice_menu == "Baseline Model": #Demo 1
     session_new.demo_stage = "Baseline Model"
     st.title("Baseline Model")

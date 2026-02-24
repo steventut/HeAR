@@ -24,7 +24,7 @@ if 'new_vecs' not in session_new:
 
 with st.sidebar:
     #st.title('Parkinson Disease Progression Monitoring using Voice Biomarker')
-	st.title('Vocalis-PD: A Multimodal Digital Biomarker Companion for Parkinson’s Therapies')
+    st.title('Vocalis-PD: A Multimodal Digital Biomarker Companion for Parkinson’s Therapies')
     st.write('v1.0')
 
 ##### HeAR added!

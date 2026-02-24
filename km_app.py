@@ -227,8 +227,9 @@ menu_functions = ["Product Description", "Baseline Model","Ahh: Capturing Voice 
 choice_menu = st.sidebar.radio("Menu", menu_functions)
 if choice_menu == "Product Description":
     #st.title("Prodcut Description")
-    st.markdown("## Vocalis-PD: A Multimodal Digital Biomarker Companion for Parkinson’s Therapies")
+    #st.markdown("## Vocalis-PD: A Multimodal Digital Biomarker Companion for Parkinson’s Therapies")
     st.markdown("### Vocalis-PD is a Parkinson Disease Progression Monitoring System using Voice Biomarker generated from google/HeAR model.")
+    st.markdown("#### we developed “A Multimodal Digital Biomarker Companion for Parkinson’s Therapies”, an application to track and monitor the progression of Parkinson’s Therapies. The patients need only speak “Ahh” to a mobile phone, and our Companion App will immediately tell the patients the progression of the Therapies. Whether patients are in the recovering stage or moving away from healthy people. The progression of the Therapies allows clinicians to adjust treatments dynamically and democratizes access to neurological tracking in under-resourced or rural areas where specialized clinics do not exist.")
 elif choice_menu == "Baseline Model": #Demo 1
     session_new.demo_stage = "Baseline Model"
     st.title("Baseline Model")
